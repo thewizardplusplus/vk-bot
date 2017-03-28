@@ -23,6 +23,7 @@
     "build": "babel --out-dir=dist src",
     "start": "node dist/main.js"
   },
+  "bin": "./dist/main.js",
   "babel": {
     "presets": [
       "latest",
