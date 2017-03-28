@@ -1,0 +1,13 @@
+{
+  "name": "vk-bot",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "thewizardplusplus <thewizardplusplus@yandex.ru>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewizardplusplus/vk-bot.git"
+  },
+  "engines": {
+    "node": "^6.9.0"
+  }
+}
