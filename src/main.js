@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
 import 'babel-polyfill'
+import logger from './logger'
 
-console.log('Hello, world!')
+logger.info('Hello, world!')
