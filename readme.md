@@ -62,6 +62,20 @@ A `.env` file will never modify any environment variables that have already been
 
 Message object in the JSON Schema format: [docs/message.json](docs/message.json).
 
+## Screenshots
+
+![Help message](screenshots/screenshot_00.png)
+
+Help message
+
+![Messages processing](screenshots/screenshot_01.png)
+
+Messages processing
+
+![Conversation with the bot](screenshots/screenshot_02.png)
+
+Conversation with the bot
+
 ## License
 
 The MIT License (MIT)
