@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "peer_id": {
+      "type": "integer"
+    },
+    "timestamp": {
+      "description": "date and time in ISO 8601 format",
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+    },
+    "subject": {
+      "$ref": "#/definitions/nonempty-string"
+    },
+    "text": {
+      "$ref": "#/definitions/nonempty-string"
+    }
+  },
+  "required": [
+    "id",
+    "peer_id",
+    "timestamp",
+    "subject",
+    "text"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "nonempty-string": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
