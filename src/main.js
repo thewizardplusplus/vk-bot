@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import 'babel-polyfill'
+import processOptions from './options'
 import processEnv from './env'
 import util from 'util'
 import logger from './logger'
@@ -11,6 +12,7 @@ import {
   makeEchoMessageHandler,
 } from './vk_bot'
 
+processOptions()
 processEnv()
 initVkBot(
   makeInboxUpdateHandler(
