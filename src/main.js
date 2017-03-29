@@ -4,9 +4,9 @@ import 'babel-polyfill'
 import processEnv from './env'
 import util from 'util'
 import logger from './logger'
-import {initVkBot} from './vk_bot'
+import {initVkBot, makeInboxUpdateHandler} from './vk_bot'
 
 processEnv()
-initVkBot((vk_bot, update) => {
-  logger.info(`update has been received: ${util.inspect(update)}`)
-})
+initVkBot(makeInboxUpdateHandler((vk_bot, message) => {
+  logger.info(`message has been received: ${util.inspect(message)}`)
+}))
