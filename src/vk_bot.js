@@ -37,3 +37,15 @@ export function makeInboxUpdateHandler(message_handler) {
     })
   }
 }
+
+export function makeEchoMessageHandler(message_handler) {
+  return (vk_bot, message) => {
+    logger.info(`message has been received: ${util.inspect(message)}`)
+
+    message_handler(vk_bot, message)
+      .then(response => vk_bot.send(response.message, message.peer_id))
+      .catch(error => {
+        logger.info(`error has occurred: ${util.inspect(error)}`)
+      })
+  }
+}
