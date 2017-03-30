@@ -22,6 +22,11 @@ initVkBot(
 
         return {
           message: response,
+          attachments: [
+            'photo-143852874_456239017',
+            'photo-143852874_456239018',
+            'photo-143852874_456239019',
+          ],
         }
       }),
     ),

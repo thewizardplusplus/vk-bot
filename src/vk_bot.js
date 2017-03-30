@@ -43,7 +43,11 @@ export function makeEchoMessageHandler(message_handler) {
     logger.info(`message has been received: ${util.inspect(message)}`)
 
     message_handler(vk_bot, message)
-      .then(response => vk_bot.send(response.message, message.peer_id))
+      .then(response => vk_bot.send(response.message, message.peer_id, {
+        attachment: typeof response.attachments !== 'undefined'
+          ? response.attachments.join(',')
+          : undefined,
+      }))
       .catch(error => {
         logger.info(`error has occurred: ${util.inspect(error)}`)
       })
