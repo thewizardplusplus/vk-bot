@@ -3,8 +3,7 @@
 import 'babel-polyfill'
 import processOptions from './options'
 import processEnv from './env'
-import util from 'util'
-import logger from './logger'
+import makeAttachmentsHandler from './attachments'
 import makeCommandRunner from './command'
 import {
   initVkBot,
@@ -17,18 +16,9 @@ processEnv()
 initVkBot(
   makeInboxUpdateHandler(
     makeEchoMessageHandler(
-      makeCommandRunner((vk_bot, response) => {
-        logger.info(`response has been received: ${util.inspect(response)}`)
-
-        return {
-          message: response,
-          attachments: [
-            'photo-143852874_456239017',
-            'photo-143852874_456239018',
-            'photo-143852874_456239019',
-          ],
-        }
-      }),
+      makeCommandRunner(
+        makeAttachmentsHandler(),
+      ),
     ),
   ),
 )
