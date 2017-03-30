@@ -18,20 +18,24 @@ function extractAttachments(response) {
   }
 }
 
-export default function makeAttachmentsHandler() {
+export default function makeAttachmentsHandler(attachment_loader) {
   return (vk_bot, response) => {
     logger.info(`response has been received: ${util.inspect(response)}`)
 
     const {cleaned_response, attachments} = extractAttachments(response)
-    logger.debug(`extracted attachments: ${util.inspect(attachments)}`)
+    return Promise
+      .all(attachments.map(attachment => attachment_loader(vk_bot, attachment)))
+      .then(attachments => {
+        logger.info(
+          `attachments have been loaded: ${util.inspect(attachments)}`,
+        )
 
-    return {
-      message: cleaned_response,
-      attachments: [
-        'photo-143852874_456239017',
-        'photo-143852874_456239018',
-        'photo-143852874_456239019',
-      ],
-    }
+        return {
+          message: cleaned_response,
+          attachments: attachments.map(attachment => {
+            return `photo${attachment.owner_id}_${attachment.id}`
+          }),
+        }
+      })
   }
 }

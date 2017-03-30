@@ -17,7 +17,7 @@ initVkBot(
   makeInboxUpdateHandler(
     makeEchoMessageHandler(
       makeCommandRunner(
-        makeAttachmentsHandler(),
+        makeAttachmentsHandler((vk_bot, path) => vk_bot.uploadPhoto(path)),
       ),
     ),
   ),
