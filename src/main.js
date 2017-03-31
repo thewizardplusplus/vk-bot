@@ -3,6 +3,7 @@
 import 'babel-polyfill'
 import processOptions from './options'
 import processEnv from './env'
+import {makeCachedAttachmentLoader} from './cache'
 import makeAttachmentsHandler from './attachments'
 import makeCommandRunner from './command'
 import {
@@ -16,9 +17,7 @@ processEnv()
 initVkBot(
   makeInboxUpdateHandler(
     makeEchoMessageHandler(
-      makeCommandRunner(
-        makeAttachmentsHandler((vk_bot, path) => vk_bot.uploadPhoto(path)),
-      ),
+      makeCommandRunner(makeAttachmentsHandler(makeCachedAttachmentLoader())),
     ),
   ),
 )
