@@ -1,5 +1,6 @@
 import util from 'util'
 import logger from './logger'
+import path from 'path'
 
 const ATTACHMENT_PATTERN = /\${file:\/\/([^{}]+)}/g
 function extractAttachments(response) {
@@ -24,7 +25,10 @@ export default function makeAttachmentsHandler(attachment_loader) {
 
     const {cleaned_response, attachments} = extractAttachments(response)
     return Promise
-      .all(attachments.map(attachment => attachment_loader(vk_bot, attachment)))
+      .all(attachments.map(attachment => attachment_loader(
+        vk_bot,
+        path.resolve(attachment),
+      )))
       .then(attachments => {
         logger.info(
           `attachments have been loaded: ${util.inspect(attachments)}`,
