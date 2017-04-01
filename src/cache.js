@@ -5,7 +5,7 @@ import util from 'util'
 import logger from './logger'
 
 class Test {
-  // f = 23
+  f = 23
 }
 
 function readCacheFilename() {
