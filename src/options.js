@@ -13,6 +13,8 @@ const EPILOG =
                         (default: ~/.vk-bot/attachments.json)
   VK_BOT_INEXACT_CACHE  Search attachments in a cache only by its      [boolean]
                         basenames (allowed: TRUE)
+  VK_BOT_LOG            File where to persist a log (default:          [string]
+                        ~/.vk-bot/logs/app.log)
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {

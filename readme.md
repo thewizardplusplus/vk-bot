@@ -46,7 +46,8 @@ Environment variables:
 * `VK_BOT_TOKEN` &mdash; VK API access token;
 * `VK_BOT_COMMAND` &mdash; messages process command;
 * `VK_BOT_CACHE` &mdash; file where to persist cached attachments (default: `~/.vk-bot/attachments.json`);
-* `VK_BOT_INEXACT_CACHE` &mdash; search attachments in a cache only by its basenames (allowed: `TRUE`).
+* `VK_BOT_INEXACT_CACHE` &mdash; search attachments in a cache only by its basenames (allowed: `TRUE`);
+* `VK_BOT_LOG` &mdash; file where to persist a log (default: `~/.vk-bot/logs/app.log`).
 
 Environment variables can be specified in a `.env` file in the project folder in the format:
 
