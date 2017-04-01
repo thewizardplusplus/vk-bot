@@ -40,9 +40,7 @@ export function makeAttachmentsHandler(attachment_loader) {
 
         return {
           message: cleaned_response,
-          attachments: attachments.map(({owner_id, id}) => {
-            return makeAttachmentId(owner_id, id)
-          }),
+          attachments,
         }
       })
   }
