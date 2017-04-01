@@ -19,7 +19,11 @@ function extractAttachments(response) {
   }
 }
 
-export default function makeAttachmentsHandler(attachment_loader) {
+export function makeAttachmentId(owner_id, attachment_id) {
+  return `photo${owner_id}_${attachment_id}`
+}
+
+export function makeAttachmentsHandler(attachment_loader) {
   return (vk_bot, response) => {
     logger.info(`response has been received: ${util.inspect(response)}`)
 
@@ -36,8 +40,8 @@ export default function makeAttachmentsHandler(attachment_loader) {
 
         return {
           message: cleaned_response,
-          attachments: attachments.map(attachment => {
-            return `photo${attachment.owner_id}_${attachment.id}`
+          attachments: attachments.map(({owner_id, id}) => {
+            return makeAttachmentId(owner_id, id)
           }),
         }
       })
