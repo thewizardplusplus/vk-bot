@@ -41,7 +41,6 @@ export class Cache {
       }))
       .then(() => {
         logger.info(`cache file ${util.inspect(this.file)} has been saved`)
-        return this
       })
       .catch(error => {
         logger.warn(
@@ -69,20 +68,24 @@ export class Cache {
 
   add(attachment_id, attachment_path) {
     const {dir, base} = path.parse(attachment_path)
-    this.collection.insert({
+    return this.collection.insert({
       attachment: attachment_id,
       file: {
         path: dir,
         name: base,
       },
     })
+  }
 
+  addAndSave(attachment_id, attachment_path) {
+    const attachment = this.add(attachment_id, attachment_path)
     return this
+      .save()
+      .then(() => attachment)
   }
 
   debug() {
     logger.debug(`cache: ${util.inspect(this.collection.find({}))}`)
-    return this
   }
 
   _getCollection() {
