@@ -2,8 +2,7 @@ import Loki from 'lokijs'
 import util from 'util'
 import logger from './logger'
 import path from 'path'
-import mkdirp from 'mkdirp'
-import {readEnvFilename} from './files'
+import {readEnvFilename, createDirectory} from './files'
 
 export class Cache {
   file
@@ -98,27 +97,8 @@ export class Cache {
   }
 }
 
-function createCacheDirectory(path) {
-  return new Promise((resolve, reject) => mkdirp(path, (error, made) => {
-      error === null ? resolve(made) : reject(error)
-    }))
-    .then(made => {
-      if (made !== null) {
-        logger.info(`cache directory ${util.inspect(path)} has been created`)
-      }
-    })
-    .catch(error => {
-      logger.error(
-        `unable to create cache directory ${util.inspect(path)}: `
-          + util.inspect(error),
-      )
-
-      process.exit(1)
-    })
-}
-
 export function initCache() {
   const cache_filename = readEnvFilename('VK_BOT_CACHE', 'attachments.json')
-  return createCacheDirectory(path.dirname(cache_filename))
+  return createDirectory(path.dirname(cache_filename))
     .then(() => new Cache(cache_filename).load())
 }
