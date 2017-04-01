@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
-    "babel-preset-latest": "^6.24.0",
+    "babel-preset-env": "^1.3.2",
     "babel-preset-stage-3": "^6.22.0",
     "nodemon": "^1.11.0"
   },
@@ -34,7 +34,15 @@
   "bin": "./dist/main.js",
   "babel": {
     "presets": [
-      "latest",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          },
+          "useBuiltIns": true
+        }
+      ],
       "stage-3"
     ]
   }

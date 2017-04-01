@@ -4,6 +4,10 @@ import mkdirp from 'mkdirp'
 import util from 'util'
 import logger from './logger'
 
+class Test {
+  // f = 23
+}
+
 function readCacheFilename() {
   return process.env.VK_BOT_CACHE
     || path.join(os.homedir(), '.vk-bot', 'attachments.json')
