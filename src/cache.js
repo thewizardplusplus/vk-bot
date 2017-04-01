@@ -2,8 +2,8 @@ import Loki from 'lokijs'
 import util from 'util'
 import logger from './logger'
 import path from 'path'
-import os from 'os'
 import mkdirp from 'mkdirp'
+import {readEnvFilename} from './files'
 
 export class Cache {
   file
@@ -98,11 +98,6 @@ export class Cache {
   }
 }
 
-function readCacheFilename() {
-  return process.env.VK_BOT_CACHE
-    || path.join(os.homedir(), '.vk-bot', 'attachments.json')
-}
-
 function createCacheDirectory(path) {
   return new Promise((resolve, reject) => mkdirp(path, (error, made) => {
       error === null ? resolve(made) : reject(error)
@@ -123,7 +118,7 @@ function createCacheDirectory(path) {
 }
 
 export function initCache() {
-  const cache_filename = readCacheFilename()
+  const cache_filename = readEnvFilename('VK_BOT_CACHE', 'attachments.json')
   return createCacheDirectory(path.dirname(cache_filename))
     .then(() => new Cache(cache_filename).load())
 }
