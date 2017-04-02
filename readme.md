@@ -104,6 +104,10 @@ Messages processing
 
 Conversation with the bot
 
+![Request of a join to the group](screenshots/screenshot_03.png)
+
+Request of a join to the group
+
 ## License
 
 The MIT License (MIT)
