@@ -15,6 +15,10 @@ const EPILOG =
                         basenames (allowed: TRUE)
   VK_BOT_LOG            File where to persist a log (default:          [string]
                         ~/.vk-bot/logs/app.log)
+  VK_BOT_PRELIMINARILY  Preliminary response about a receiving of      [string]
+                        a message for a processing (default: Hello!
+                        Your message is being processed. Please,
+                        wait.)
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {

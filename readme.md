@@ -54,7 +54,8 @@ Environment variables:
 * `VK_BOT_COMMAND` &mdash; messages process command;
 * `VK_BOT_CACHE` &mdash; file where to persist cached attachments (default: `~/.vk-bot/attachments.json`);
 * `VK_BOT_INEXACT_CACHE` &mdash; search attachments in a cache only by its basenames (allowed: `TRUE`);
-* `VK_BOT_LOG` &mdash; file where to persist a log (default: `~/.vk-bot/logs/app.log`).
+* `VK_BOT_LOG` &mdash; file where to persist a log (default: `~/.vk-bot/logs/app.log`);
+* `VK_BOT_PRELIMINARILY` &mdash; preliminary response about a receiving of a message for a processing (default: `Hello! Your message is being processed. Please, wait.`).
 
 Environment variables can be specified in a `.env` file in the project folder in the format:
 
