@@ -38,11 +38,23 @@ export function makeInboxUpdateHandler(message_handler) {
   }
 }
 
+function readPreliminaryResponse() {
+  // empty value is significant
+  return typeof process.env.VK_BOT_PRELIMINARILY !== 'undefined'
+    ? process.env.VK_BOT_PRELIMINARILY
+    : 'Hello! Your message is being processed. Please, wait.'
+}
+
 export function makeEchoMessageHandler(message_handler) {
   return (vk_bot, message) => {
     logger.info(`message has been received: ${util.inspect(message)}`)
 
-    message_handler(vk_bot, message)
+    const preliminary_response = readPreliminaryResponse()
+    const response_promise = preliminary_response !== ''
+      ? vk_bot.send(preliminary_response, message.peer_id)
+      : Promise.resolve()
+    response_promise
+      .then(() => message_handler(vk_bot, message))
       .then(response => vk_bot.send(response.message, message.peer_id, {
         attachment: typeof response.attachments !== 'undefined'
           ? response.attachments.join(',')
