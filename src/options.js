@@ -21,6 +21,8 @@ const EPILOG =
                         wait.)
   VK_BOT_REQUIRE_JOIN   Require join to the group before start         [boolean]
                         a conversation (allowed: TRUE)
+  VK_BOT_JOIN_REQUEST   Request of a join to the group (default:       [string]
+                        Hello! To talk to me, please, join my group.)
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {
