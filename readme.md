@@ -5,8 +5,15 @@ Extendable [VK](http://vk.com/) group bot.
 ## Features
 
 * listen inbox messages via [the long polling technology](https://vk.com/dev/using_longpoll);
-* process messages by the specified outer command;
-* serialize a message object (see below for details) to the JSON format.
+* process messages by the specified outer command:
+    * serialize a message object (see below for details) to the JSON format;
+* attachments:
+    * support attachments in a response (see below for details);
+    * automatically load attachments from a command response;
+    * cache loaded attachments:
+        * search in a cache by:
+            * attachment path;
+            * attachment basename.
 
 ## Installation
 
@@ -64,6 +71,17 @@ A `.env` file will never modify any environment variables that have already been
 ## Message object
 
 Message object in the JSON Schema format: [docs/message.json](docs/message.json).
+
+## Attachments
+
+```regex
+/\${file:\/\/(?P<path>[^{}]+)}/
+```
+
+Path may be:
+
+* absolute;
+* relative to a current working directory.
 
 ## Screenshots
 
