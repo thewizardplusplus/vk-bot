@@ -23,6 +23,7 @@ function testEnv(result_name, variables, incorrects_filter) {
 
 const REQUIRED_VARIABLES = [
   'VK_BOT_TOKEN',
+  'VK_BOT_GROUP',
   'VK_BOT_COMMAND',
 ]
 function checkRequiredEnv() {
@@ -33,6 +34,7 @@ function checkRequiredEnv() {
 
 const VARIABLES_PATTERNS = {
   VK_BOT_TOKEN: /.+/,
+  VK_BOT_GROUP: /.+/,
   VK_BOT_COMMAND: /.+/,
 }
 function validateEnv() {
