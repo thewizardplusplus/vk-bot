@@ -4,7 +4,16 @@ import logger from './logger'
 
 function runCommand(message) {
   const command_promise = exec(process.env.VK_BOT_COMMAND)
-    .then(result => result.stdout)
+    .then(result => {
+      if (result.stderr !== '') {
+        logger.error(
+          `command ${util.inspect(process.env.VK_BOT_COMMAND)} returns error: `
+            + util.inspect(result.stderr),
+        )
+      }
+
+      return result.stdout
+    })
   command_promise.childProcess.stdin.write(message)
   command_promise.childProcess.stdin.end()
 
