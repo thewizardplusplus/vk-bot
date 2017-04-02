@@ -45,21 +45,28 @@ function readPreliminaryResponse() {
     : 'Hello! Your message is being processed. Please, wait.'
 }
 
+function sendResponse(vk_bot, peer_id, response) {
+  return vk_bot
+    .send(response.message, peer_id, {
+      attachment: typeof response.attachments !== 'undefined'
+        ? response.attachments.join(',')
+        : undefined,
+    })
+}
+
 export function makeEchoMessageHandler(message_handler) {
   return (vk_bot, message) => {
     logger.info(`message has been received: ${util.inspect(message)}`)
 
     const preliminary_response = readPreliminaryResponse()
     const response_promise = preliminary_response !== ''
-      ? vk_bot.send(preliminary_response, message.peer_id)
+      ? sendResponse(vk_bot, message.peer_id, {
+        message: preliminary_response,
+      })
       : Promise.resolve()
     response_promise
       .then(() => message_handler(vk_bot, message))
-      .then(response => vk_bot.send(response.message, message.peer_id, {
-        attachment: typeof response.attachments !== 'undefined'
-          ? response.attachments.join(',')
-          : undefined,
-      }))
+      .then(response => sendResponse(vk_bot, message.peer_id, response))
       .catch(error => {
         logger.error(`error has occurred: ${util.inspect(error)}`)
       })
