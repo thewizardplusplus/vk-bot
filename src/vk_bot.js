@@ -78,7 +78,23 @@ export function makeEchoMessageHandler(message_handler) {
 
 export function makeJoinRequester(message_handler) {
   return (vk_bot, message) => {
-    logger.debug('request join')
-    return message_handler(vk_bot, message)
+    return vk_bot
+      .api('groups.isMember', {
+        group_id: process.env.VK_BOT_GROUP,
+        user_id: message.peer_id,
+        extended: 1,
+      })
+      .then(({member}) => {
+        logger.info(`user ${message.peer_id} ${member ? 'is' : "isn't"} joined`)
+        if (member) {
+          return message_handler(vk_bot, message)
+        }
+
+        logger.info(`message has been received: ${util.inspect(message)}`)
+        return sendResponse(vk_bot, message.peer_id, {
+          message: process.env.VK_BOT_JOIN_REQUEST
+            || 'Hello! To talk to me, please, join my group.',
+        })
+      })
   }
 }
