@@ -19,6 +19,8 @@ const EPILOG =
                         a message for a processing (default: Hello!
                         Your message is being processed. Please,
                         wait.)
+  VK_BOT_REQUIRE_JOIN   Require join to the group before start         [boolean]
+                        a conversation (allowed: TRUE)
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {
