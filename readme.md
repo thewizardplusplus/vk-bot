@@ -7,6 +7,7 @@ Extendable [VK](http://vk.com/) group bot.
 * listen inbox messages via [the long polling technology](https://vk.com/dev/using_longpoll);
 * process messages by the specified outer command:
     * serialize a message object (see below for details) to the JSON format;
+* support a preliminary response about a receiving of a message for a processing;
 * attachments:
     * support attachments in a response (see below for details);
     * automatically load attachments from a command response;
