@@ -61,7 +61,7 @@ export function makeEchoMessageHandler(message_handler) {
           : undefined,
       }))
       .catch(error => {
-        logger.info(`error has occurred: ${util.inspect(error)}`)
+        logger.error(`error has occurred: ${util.inspect(error)}`)
       })
   }
 }
