@@ -52,6 +52,9 @@ function sendResponse(vk_bot, peer_id, response) {
         ? response.attachments.join(',')
         : undefined,
     })
+    .then(() => {
+      logger.info(`response has been sent: ${util.inspect(response)}`)
+    })
 }
 
 export function makeEchoMessageHandler(message_handler) {
