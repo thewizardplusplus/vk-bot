@@ -42,7 +42,7 @@ export class Cache {
         logger.info(`cache file ${util.inspect(this.file)} has been saved`)
       })
       .catch(error => {
-        logger.warn(
+        logger.error(
           `unable to save cache file ${util.inspect(this.file)}: `
             + util.inspect(error),
         )
