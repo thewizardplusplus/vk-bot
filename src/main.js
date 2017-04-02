@@ -12,6 +12,7 @@ import {
   initVkBot,
   makeInboxUpdateHandler,
   makeEchoMessageHandler,
+  makeJoinRequester,
 } from './vk_bot'
 
 processOptions()
@@ -19,12 +20,15 @@ processEnv()
 
 initFileLogger()
   .then(() => initCache())
-  .then(cache => initVkBot(
-    makeInboxUpdateHandler(
-      makeEchoMessageHandler(
-        makeCommandRunner(
-          makeAttachmentsHandler(makeCachedAttachmentLoader(cache)),
-        ),
+  .then(cache => {
+    let message_handler = makeEchoMessageHandler(
+      makeCommandRunner(
+        makeAttachmentsHandler(makeCachedAttachmentLoader(cache)),
       ),
-    ),
-  ))
+    )
+    if (process.env.VK_BOT_REQUIRE_JOIN === 'TRUE') {
+      message_handler = makeJoinRequester(message_handler)
+    }
+
+    initVkBot(makeInboxUpdateHandler(message_handler))
+  })

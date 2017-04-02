@@ -75,3 +75,10 @@ export function makeEchoMessageHandler(message_handler) {
       })
   }
 }
+
+export function makeJoinRequester(message_handler) {
+  return (vk_bot, message) => {
+    logger.debug('request join')
+    return message_handler(vk_bot, message)
+  }
+}
