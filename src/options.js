@@ -24,6 +24,10 @@ const EPILOG =
                         a conversation (allowed: TRUE)
   VK_BOT_JOIN_REQUEST   Request of a join to the group (default:       [string]
                         Hello! To talk to me, please, join my group.)
+  VK_BOT_ERROR          Special response on an error in a message      [string]
+                        processing (default: I'm sorry, but error has
+                        occurred on a processing of your message.
+                        Please, try again.)
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {
