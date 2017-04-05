@@ -1,4 +1,5 @@
 import {Bot} from 'node-vk-bot'
+import VkApi from 'node-vkapi'
 import logger from './logger'
 import util from 'util'
 
@@ -9,6 +10,10 @@ export function initVkBot(update_handler) {
       v: 5.63,
       lang: 'ru',
     },
+  })
+  const vk_api_client = new VkApi({
+    token: vk_bot.options.token,
+    version: vk_bot.options.api.v.toString(),
   })
   vk_bot.on('update', update => {
     update_handler(vk_bot, update)
