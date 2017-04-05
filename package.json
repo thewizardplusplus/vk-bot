@@ -17,6 +17,7 @@
     "lokijs": "^1.4.3",
     "mkdirp": "^0.5.1",
     "node-vk-bot": "^0.1.5",
+    "node-vkapi": "^2.1.0",
     "winston": "^2.3.1",
     "yargs": "^7.0.2"
   },
