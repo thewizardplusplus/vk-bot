@@ -57,6 +57,10 @@ function sendResponse(vk_bot, peer_id, response) {
     })
 }
 
+function logError(error) {
+  logger.error(`error has occurred: ${util.inspect(error)}`)
+}
+
 export function makeEchoMessageHandler(message_handler) {
   return (vk_bot, message) => {
     logger.info(`message has been received: ${util.inspect(message)}`)
@@ -71,7 +75,15 @@ export function makeEchoMessageHandler(message_handler) {
       .then(() => message_handler(vk_bot, message))
       .then(response => sendResponse(vk_bot, message.peer_id, response))
       .catch(error => {
-        logger.error(`error has occurred: ${util.inspect(error)}`)
+        logError(error)
+
+        sendResponse(vk_bot, message.peer_id, {
+          message: process.env.VK_BOT_ERROR
+            || "I'm sorry, but error has occurred "
+              + 'on a processing of your message. '
+              + 'Please, try again.',
+        })
+          .catch(logError)
       })
   }
 }
