@@ -15,6 +15,10 @@ export function initVkBot(update_handler) {
     token: vk_bot.options.token,
     version: vk_bot.options.api.v.toString(),
   })
+  vk_bot.api = (method, parameters) => vk_api_client.call(method, {
+    lang: vk_bot.options.api.lang,
+    ...parameters,
+  })
   vk_bot.on('update', update => {
     update_handler(vk_bot, update)
   })
