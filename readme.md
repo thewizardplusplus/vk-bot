@@ -110,6 +110,10 @@ Conversation with the bot
 
 Request of a join to the group
 
+![Error in a message processing](screenshots/screenshot_04.png)
+
+Error in a message processing
+
 ## License
 
 The MIT License (MIT)
