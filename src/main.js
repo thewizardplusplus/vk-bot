@@ -11,8 +11,8 @@ import makeCommandRunner from './command'
 import {
   initVkBot,
   makeInboxUpdateHandler,
-  makeEchoMessageHandler,
   makeJoinRequester,
+  makeEchoMessageHandler,
 } from './vk_bot'
 
 processOptions()

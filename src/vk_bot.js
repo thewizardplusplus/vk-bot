@@ -47,13 +47,6 @@ export function makeInboxUpdateHandler(message_handler) {
   }
 }
 
-function readPreliminaryResponse() {
-  // empty value is significant
-  return typeof process.env.VK_BOT_PRELIMINARILY !== 'undefined'
-    ? process.env.VK_BOT_PRELIMINARILY
-    : 'Hello! Your message is being processed. Please, wait.'
-}
-
 function sendResponse(vk_bot, peer_id, response) {
   return vk_bot
     .send(response.message, peer_id, {
@@ -64,6 +57,36 @@ function sendResponse(vk_bot, peer_id, response) {
     .then(() => {
       logger.info(`response has been sent: ${util.inspect(response)}`)
     })
+}
+
+export function makeJoinRequester(message_handler) {
+  return (vk_bot, message) => {
+    return vk_bot
+      .api('groups.isMember', {
+        group_id: process.env.VK_BOT_GROUP,
+        user_id: message.peer_id,
+        extended: 1,
+      })
+      .then(({member}) => {
+        logger.info(`user ${message.peer_id} ${member ? 'is' : "isn't"} joined`)
+        if (member) {
+          return message_handler(vk_bot, message)
+        }
+
+        logger.info(`message has been received: ${util.inspect(message)}`)
+        return sendResponse(vk_bot, message.peer_id, {
+          message: process.env.VK_BOT_JOIN_REQUEST
+            || 'Hello! To talk to me, please, join my group.',
+        })
+      })
+  }
+}
+
+function readPreliminaryResponse() {
+  // empty value is significant
+  return typeof process.env.VK_BOT_PRELIMINARILY !== 'undefined'
+    ? process.env.VK_BOT_PRELIMINARILY
+    : 'Hello! Your message is being processed. Please, wait.'
 }
 
 function logError(error) {
@@ -93,29 +116,6 @@ export function makeEchoMessageHandler(message_handler) {
               + 'Please, try again.',
         })
           .catch(logError)
-      })
-  }
-}
-
-export function makeJoinRequester(message_handler) {
-  return (vk_bot, message) => {
-    return vk_bot
-      .api('groups.isMember', {
-        group_id: process.env.VK_BOT_GROUP,
-        user_id: message.peer_id,
-        extended: 1,
-      })
-      .then(({member}) => {
-        logger.info(`user ${message.peer_id} ${member ? 'is' : "isn't"} joined`)
-        if (member) {
-          return message_handler(vk_bot, message)
-        }
-
-        logger.info(`message has been received: ${util.inspect(message)}`)
-        return sendResponse(vk_bot, message.peer_id, {
-          message: process.env.VK_BOT_JOIN_REQUEST
-            || 'Hello! To talk to me, please, join my group.',
-        })
       })
   }
 }
