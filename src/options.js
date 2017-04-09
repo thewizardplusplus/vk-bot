@@ -5,7 +5,7 @@ const USAGE =
 `Usage:
   ${name} --version
   ${name} --help
-  ${name} [options]`
+  ${name} [--config PATH | -c PATH]`
 const EPILOG =
 `Environment variables:
   VK_BOT_TOKEN          VK API access token                            [string]
