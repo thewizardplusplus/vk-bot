@@ -1,8 +1,10 @@
 import dotenv from 'dotenv'
 import {logger, inspect} from './logger'
 
-function updateEnv() {
-  const result = dotenv.config()
+function updateEnv(config_path) {
+  const result = dotenv.config({
+    path: config_path,
+  })
   if (typeof result.error !== 'undefined') {
     logger.warn(`unable to load the .env file: ${inspect(result.error)}`)
   }
@@ -28,7 +30,7 @@ function validateEnv() {
   }
 }
 
-export default function processEnv() {
-  updateEnv()
+export default function processEnv(config_path) {
+  updateEnv(config_path)
   validateEnv()
 }

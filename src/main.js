@@ -16,7 +16,7 @@ import {
 } from './vk_bot'
 
 const options = processOptions()
-processEnv()
+processEnv(options.config)
 
 initFileLogger()
   .then(() => {
