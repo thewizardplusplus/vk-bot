@@ -1,4 +1,5 @@
 import winston from 'winston'
+import util from 'util'
 
 export const logger = new winston.Logger({
   transports: [
@@ -12,3 +13,9 @@ export const logger = new winston.Logger({
   ],
   exitOnError: false,
 })
+
+export function inspect(object) {
+  return util.inspect(object, {
+    breakLength: Infinity,
+  })
+}
