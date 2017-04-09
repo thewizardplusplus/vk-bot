@@ -1,6 +1,5 @@
 import Loki from 'lokijs'
-import util from 'util'
-import {logger} from './logger'
+import {logger, inspect} from './logger'
 import path from 'path'
 import {readEnvFilename, createDirectory} from './files'
 
@@ -19,15 +18,14 @@ export class Cache {
         error === null ? resolve() : reject(error)
       }))
       .then(() => {
-        logger.info(`cache file ${util.inspect(this.file)} has been loaded`)
+        logger.info(`cache file ${inspect(this.file)} has been loaded`)
 
         this.collection = this._getCollection()
         return this
       })
       .catch(error => {
         logger.error(
-          `unable to load cache file ${util.inspect(this.file)}: `
-            + util.inspect(error),
+          `unable to load cache file ${inspect(this.file)}: ${inspect(error)}`,
         )
 
         process.exit(1)
@@ -39,12 +37,11 @@ export class Cache {
         error === null ? resolve() : reject(error)
       }))
       .then(() => {
-        logger.info(`cache file ${util.inspect(this.file)} has been saved`)
+        logger.info(`cache file ${inspect(this.file)} has been saved`)
       })
       .catch(error => {
         logger.error(
-          `unable to save cache file ${util.inspect(this.file)}: `
-            + util.inspect(error),
+          `unable to save cache file ${inspect(this.file)}: ${inspect(error)}`,
         )
       })
   }
@@ -84,7 +81,7 @@ export class Cache {
   }
 
   debug() {
-    logger.debug(`cache: ${util.inspect(this.collection.find({}))}`)
+    logger.debug(`cache: ${inspect(this.collection.find({}))}`)
   }
 
   _getCollection() {

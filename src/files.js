@@ -1,8 +1,7 @@
 import os from 'os'
 import path from 'path'
 import mkdirp from 'mkdirp'
-import util from 'util'
-import {logger} from './logger'
+import {logger, inspect} from './logger'
 
 export function readEnvFilename(variable, default_relative_path) {
   return process.env[variable]
@@ -15,13 +14,12 @@ export function createDirectory(path) {
     }))
     .then(made => {
       if (made !== null) {
-        logger.info(`directory ${util.inspect(path)} has been created`)
+        logger.info(`directory ${inspect(path)} has been created`)
       }
     })
     .catch(error => {
       logger.error(
-        `unable to create directory ${util.inspect(path)}: `
-          + util.inspect(error),
+        `unable to create directory ${inspect(path)}: ${inspect(error)}`,
       )
 
       process.exit(1)

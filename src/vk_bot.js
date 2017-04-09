@@ -1,7 +1,6 @@
 import {Bot} from 'node-vk-bot'
 import VkApi from 'node-vkapi'
-import {logger} from './logger'
-import util from 'util'
+import {logger, inspect} from './logger'
 
 export function initVkBot(update_handler) {
   const vk_bot = new Bot({
@@ -28,13 +27,13 @@ export function initVkBot(update_handler) {
 }
 
 function logError(error) {
-  logger.error(`error has occurred: ${util.inspect(error)}`)
+  logger.error(`error has occurred: ${inspect(error)}`)
 }
 
 const OUTBOX_MESSAGE_FLAG = 2
 export function makeInboxUpdateHandler(message_handler) {
   return (vk_bot, update) => {
-    logger.info(`update has been received: ${util.inspect(update)}`)
+    logger.info(`update has been received: ${inspect(update)}`)
 
     const update_flags = update[2]
     if (update_flags & OUTBOX_MESSAGE_FLAG) {
@@ -70,9 +69,7 @@ function sendResponse(vk_bot, peer_id, response) {
         ? response.attachments.join(',')
         : undefined,
     })
-    .then(() => {
-      logger.info(`response has been sent: ${util.inspect(response)}`)
-    })
+    .then(() => logger.info(`response has been sent: ${inspect(response)}`))
 }
 
 export function makeJoinRequester(message_handler) {
@@ -89,7 +86,7 @@ export function makeJoinRequester(message_handler) {
           return message_handler(vk_bot, message)
         }
 
-        logger.info(`message has been received: ${util.inspect(message)}`)
+        logger.info(`message has been received: ${inspect(message)}`)
         return sendResponse(vk_bot, message.peer_id, {
           message: process.env.VK_BOT_JOIN_REQUEST
             || 'Hello! To talk to me, please, join my group.',
@@ -107,7 +104,7 @@ function readPreliminaryResponse() {
 
 export function makeEchoMessageHandler(message_handler) {
   return (vk_bot, message) => {
-    logger.info(`message has been received: ${util.inspect(message)}`)
+    logger.info(`message has been received: ${inspect(message)}`)
 
     const preliminary_response = readPreliminaryResponse()
     const response_promise = preliminary_response !== ''

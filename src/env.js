@@ -1,11 +1,10 @@
 import dotenv from 'dotenv'
-import util from 'util'
-import {logger} from './logger'
+import {logger, inspect} from './logger'
 
 function updateEnv() {
   const result = dotenv.config()
   if (typeof result.error !== 'undefined') {
-    logger.warn(`unable to load the .env file: ${util.inspect(result.error)}`)
+    logger.warn(`unable to load the .env file: ${inspect(result.error)}`)
   }
 }
 

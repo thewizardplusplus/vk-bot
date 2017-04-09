@@ -1,5 +1,4 @@
-import util from 'util'
-import {logger} from './logger'
+import {logger, inspect} from './logger'
 import path from 'path'
 
 const ATTACHMENT_PATTERN = /\${file:\/\/([^{}]+)}/g
@@ -25,7 +24,7 @@ export function makeAttachmentId(owner_id, attachment_id) {
 
 export function makeAttachmentsHandler(attachment_loader) {
   return (vk_bot, response) => {
-    logger.info(`response has been received: ${util.inspect(response)}`)
+    logger.info(`response has been received: ${inspect(response)}`)
 
     const {cleaned_response, attachments} = extractAttachments(response)
     return Promise
@@ -34,9 +33,7 @@ export function makeAttachmentsHandler(attachment_loader) {
         path.resolve(attachment),
       )))
       .then(attachments => {
-        logger.info(
-          `attachments have been loaded: ${util.inspect(attachments)}`,
-        )
+        logger.info(`attachments have been loaded: ${inspect(attachments)}`)
 
         return {
           message: cleaned_response,
