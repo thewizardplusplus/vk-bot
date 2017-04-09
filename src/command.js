@@ -1,6 +1,6 @@
 import {exec} from 'child-process-promise'
 import util from 'util'
-import logger from './logger'
+import {logger} from './logger'
 
 function runCommand(message) {
   const command_promise = exec(process.env.VK_BOT_COMMAND)

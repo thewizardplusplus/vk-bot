@@ -1,5 +1,5 @@
 import util from 'util'
-import logger from './logger'
+import {logger} from './logger'
 import {makeAttachmentId} from './attachments'
 
 export default function makeCachedAttachmentLoader(cache) {

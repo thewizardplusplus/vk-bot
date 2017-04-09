@@ -1,6 +1,6 @@
 import Loki from 'lokijs'
 import util from 'util'
-import logger from './logger'
+import {logger} from './logger'
 import path from 'path'
 import {readEnvFilename, createDirectory} from './files'
 

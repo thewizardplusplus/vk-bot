@@ -1,5 +1,5 @@
 import util from 'util'
-import logger from './logger'
+import {logger} from './logger'
 import path from 'path'
 
 const ATTACHMENT_PATTERN = /\${file:\/\/([^{}]+)}/g

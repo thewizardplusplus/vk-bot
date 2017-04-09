@@ -1,6 +1,6 @@
 import {Bot} from 'node-vk-bot'
 import VkApi from 'node-vkapi'
-import logger from './logger'
+import {logger} from './logger'
 import util from 'util'
 
 export function initVkBot(update_handler) {

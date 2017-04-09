@@ -1,6 +1,6 @@
 import winston from 'winston'
 
-const logger = new winston.Logger({
+export const logger = new winston.Logger({
   transports: [
     new winston.transports.Console({
       level: 'debug',
@@ -12,4 +12,3 @@ const logger = new winston.Logger({
   ],
   exitOnError: false,
 })
-export default logger

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import util from 'util'
-import logger from './logger'
+import {logger} from './logger'
 
 function updateEnv() {
   const result = dotenv.config()

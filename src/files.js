@@ -2,7 +2,7 @@ import os from 'os'
 import path from 'path'
 import mkdirp from 'mkdirp'
 import util from 'util'
-import logger from './logger'
+import {logger} from './logger'
 
 export function readEnvFilename(variable, default_relative_path) {
   return process.env[variable]

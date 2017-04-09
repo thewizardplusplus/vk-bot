@@ -1,7 +1,7 @@
 import {readEnvFilename, createDirectory} from './files'
 import path from 'path'
 import winston from 'winston'
-import logger from './logger'
+import {logger} from './logger'
 
 export default function initFileLogger() {
   const log_filename = readEnvFilename('VK_BOT_LOG', 'logs/app.log')
