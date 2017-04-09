@@ -7,7 +7,6 @@ export const logger = new winston.Logger({
       level: 'debug',
       handleExceptions: true,
       timestamp: true,
-      colorize: true,
     }),
   ],
   exitOnError: false,
