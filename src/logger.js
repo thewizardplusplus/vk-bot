@@ -15,5 +15,6 @@ export const logger = new winston.Logger({
 export function inspect(object) {
   return util.inspect(object, {
     breakLength: Infinity,
+    colors: process.env.VK_BOT_COLORFUL_LOG === 'TRUE',
   })
 }
