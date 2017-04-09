@@ -3,7 +3,7 @@ import path from 'path'
 import winston from 'winston'
 import {logger} from './logger'
 
-export default function initFileLogger() {
+export function initFileLogger() {
   const log_filename = readEnvFilename('VK_BOT_LOG', 'logs/app.log')
   return createDirectory(path.dirname(log_filename))
     .then(() => logger.add(winston.transports.File, {
