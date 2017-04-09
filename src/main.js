@@ -15,7 +15,7 @@ import {
   makeEchoMessageHandler,
 } from './vk_bot'
 
-processOptions()
+const options = processOptions()
 processEnv()
 
 initFileLogger()

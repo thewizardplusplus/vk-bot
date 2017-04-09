@@ -45,12 +45,14 @@ $ sudo npm link
 ```
 $ vk-bot --version
 $ vk-bot --help
+$ vk-bot [options]
 ```
 
 Options:
 
 * `--version` &mdash; show version number;
-* `--help` &mdash; show help.
+* `--help` &mdash; show help;
+* `--config`, `-c` &mdash; path to a `.env` config (default: `./.env`).
 
 Environment variables:
 

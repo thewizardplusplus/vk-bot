@@ -4,7 +4,8 @@ import yargs from 'yargs'
 const USAGE =
 `Usage:
   ${name} --version
-  ${name} --help`
+  ${name} --help
+  ${name} [options]`
 const EPILOG =
 `Environment variables:
   VK_BOT_TOKEN          VK API access token                            [string]
@@ -32,13 +33,18 @@ const EPILOG =
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {
-  yargs
+  return yargs
     .locale('en')
     .showHelpOnFail(false)
     .strict()
     .usage(USAGE)
     .version()
     .help()
+    .option('config', {
+      alias: 'c',
+      type: 'string',
+      describe: 'Path to a .env config (default: ./.env)',
+    })
     .epilog(EPILOG)
     .argv
 }
