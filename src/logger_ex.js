@@ -15,3 +15,10 @@ export function initFileLogger() {
       maxFiles: 5,
     }))
 }
+
+export function switchColorfulLogs() {
+  Object.keys(logger.transports).forEach(name => {
+    logger.transports[name].colorize =
+      process.env.VK_BOT_COLORFUL_LOG === 'TRUE'
+  })
+}

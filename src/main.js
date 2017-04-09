@@ -3,7 +3,7 @@
 import 'babel-polyfill'
 import processOptions from './options'
 import processEnv from './env'
-import {initFileLogger} from './logger_ex'
+import {initFileLogger, switchColorfulLogs} from './logger_ex'
 import {initCache} from './cache'
 import makeCachedAttachmentLoader from './loader'
 import {makeAttachmentsHandler} from './attachments'
@@ -19,7 +19,10 @@ processOptions()
 processEnv()
 
 initFileLogger()
-  .then(() => initCache())
+  .then(() => {
+    switchColorfulLogs()
+    return initCache()
+  })
   .then(cache => {
     let message_handler = makeEchoMessageHandler(
       makeCommandRunner(
