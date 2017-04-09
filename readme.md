@@ -60,6 +60,7 @@ Environment variables:
 * `VK_BOT_CACHE` &mdash; file where to persist cached attachments (default: `~/.vk-bot/attachments.json`);
 * `VK_BOT_INEXACT_CACHE` &mdash; search attachments in a cache only by its basenames (allowed: `TRUE`);
 * `VK_BOT_LOG` &mdash; file where to persist a log (default: `~/.vk-bot/logs/app.log`);
+* `VK_BOT_COLORFUL_LOG` &mdash; colorize log messages (allowed: `TRUE`);
 * `VK_BOT_PRELIMINARILY` &mdash; preliminary response about a receiving of a message for a processing (default: `Hello! Your message is being processed. Please, wait.`);
 * `VK_BOT_REQUIRE_JOIN` &mdash; require join to the group before start a conversation (allowed: `TRUE`);
 * `VK_BOT_JOIN_REQUEST` &mdash; request of a join to the group (default: `Hello! To talk to me, please, join my group.`);
