@@ -68,7 +68,7 @@ Environment variables:
 * `VK_BOT_JOIN_REQUEST` &mdash; request of a join to the group (default: `Hello! To talk to me, please, join my group.`);
 * `VK_BOT_ERROR` &mdash; special response on an error in a message processing (default: `I'm sorry, but error has occurred on a processing of your message. Please, try again.`).
 
-Environment variables can be specified in a `.env` file in the project folder in the format:
+Environment variables can be specified in a `.env` config in the format:
 
 ```
 NAME_1=value_1
@@ -78,7 +78,7 @@ NAME_2=value_2
 
 See details about the format: https://github.com/motdotla/dotenv#rules.
 
-A `.env` file will never modify any environment variables that have already been set.
+A `.env` config will never modify any environment variables that have already been set.
 
 ## Message object
 
