@@ -26,10 +26,6 @@ export function initVkBot(update_handler) {
   logger.info('VK bot has been initialized')
 }
 
-function logError(error) {
-  logger.error(`error has occurred: ${inspect(error)}`)
-}
-
 const OUTBOX_MESSAGE_FLAG = 2
 export function makeInboxUpdateHandler(message_handler) {
   return (vk_bot, update) => {
@@ -40,26 +36,18 @@ export function makeInboxUpdateHandler(message_handler) {
       return
     }
 
-    const message = {
+    message_handler(vk_bot, {
       id: update[1],
       peer_id: update[3],
       timestamp: new Date(update[4] * 1000),
       subject: update[5],
       text: update[6],
-    }
-    message_handler(vk_bot, message)
-      .catch(error => {
-        logError(error)
-
-        sendResponse(vk_bot, message.peer_id, {
-          message: process.env.VK_BOT_ERROR
-            || "I'm sorry, but error has occurred "
-              + 'on a processing of your message. '
-              + 'Please, try again.',
-        })
-          .catch(logError)
-      })
+    })
   }
+}
+
+function logError(error) {
+  logger.error(`error has occurred: ${inspect(error)}`)
 }
 
 function sendResponse(vk_bot, peer_id, response) {
@@ -70,6 +58,23 @@ function sendResponse(vk_bot, peer_id, response) {
         : undefined,
     })
     .then(() => logger.info(`response has been sent: ${inspect(response)}`))
+}
+
+export function makeErrorHandler(message_handler) {
+  return (vk_bot, message) => {
+    return message_handler(vk_bot, message)
+      .catch(error => {
+        logError(error)
+
+        return sendResponse(vk_bot, message.peer_id, {
+          message: process.env.VK_BOT_ERROR
+            || "I'm sorry, but error has occurred "
+              + 'on a processing of your message. '
+              + 'Please, try again.',
+        })
+          .catch(logError)
+      })
+  }
 }
 
 export function makeJoinRequester(message_handler) {

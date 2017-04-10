@@ -11,6 +11,7 @@ import makeCommandRunner from './command'
 import {
   initVkBot,
   makeInboxUpdateHandler,
+  makeErrorHandler,
   makeJoinRequester,
   makeEchoMessageHandler,
 } from './vk_bot'
@@ -33,5 +34,5 @@ initFileLogger()
       message_handler = makeJoinRequester(message_handler)
     }
 
-    initVkBot(makeInboxUpdateHandler(message_handler))
+    initVkBot(makeInboxUpdateHandler(makeErrorHandler(message_handler)))
   })
