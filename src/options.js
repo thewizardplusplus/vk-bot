@@ -30,6 +30,9 @@ const EPILOG =
                         processing (default: I'm sorry, but error has
                         occurred on a processing of your message.
                         Please, try again.)
+  VK_BOT_ONLY_LAST      Respond only to a last message from several    [boolean]
+                        messages received simultaneously (allowed:
+                        TRUE)
 
 Copyright (C) 2017 thewizardplusplus`
 export default function processOptions() {
