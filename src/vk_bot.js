@@ -60,13 +60,22 @@ function sendResponse(vk_bot, peer_id, response) {
     .then(() => logger.info(`response has been sent: ${inspect(response)}`))
 }
 
-export function makeErrorHandler(message_handler) {
+function sendFilteredResponse(vk_bot, message, message_filter, response) {
+  if (typeof message_filter !== 'undefined' && !message_filter(message)) {
+    logger.warn(`response has been filtered: ${inspect(response)}`)
+    return Promise.resolve()
+  }
+
+  return sendResponse(vk_bot, message.peer_id, response)
+}
+
+export function makeErrorHandler(message_handler, message_filter) {
   return (vk_bot, message) => {
     return message_handler(vk_bot, message)
       .catch(error => {
         logError(error)
 
-        return sendResponse(vk_bot, message.peer_id, {
+        return sendFilteredResponse(vk_bot, message, message_filter, {
           message: process.env.VK_BOT_ERROR
             || "I'm sorry, but error has occurred "
               + 'on a processing of your message. '
@@ -77,7 +86,7 @@ export function makeErrorHandler(message_handler) {
   }
 }
 
-export function makeJoinRequester(message_handler) {
+export function makeJoinRequester(message_handler, message_filter) {
   return (vk_bot, message) => {
     return vk_bot
       .api('groups.isMember', {
@@ -94,7 +103,7 @@ export function makeJoinRequester(message_handler) {
         }
 
         logger.info(`message has been received: ${inspect(message)}`)
-        return sendResponse(vk_bot, message.peer_id, {
+        return sendFilteredResponse(vk_bot, message, message_filter, {
           message: process.env.VK_BOT_JOIN_REQUEST
             || 'Hello! To talk to me, please, join my group.',
         })
@@ -109,18 +118,23 @@ function readPreliminaryResponse() {
     : 'Hello! Your message is being processed. Please, wait.'
 }
 
-export function makeEchoMessageHandler(message_handler) {
+export function makeEchoMessageHandler(message_handler, message_filter) {
   return (vk_bot, message) => {
     logger.info(`message has been received: ${inspect(message)}`)
 
     const preliminary_response = readPreliminaryResponse()
     const response_promise = preliminary_response !== ''
-      ? sendResponse(vk_bot, message.peer_id, {
+      ? sendFilteredResponse(vk_bot, message, message_filter, {
         message: preliminary_response,
       })
       : Promise.resolve()
     return response_promise
       .then(() => message_handler(vk_bot, message))
-      .then(response => sendResponse(vk_bot, message.peer_id, response))
+      .then(response => sendFilteredResponse(
+        vk_bot,
+        message,
+        message_filter,
+        response,
+      ))
   }
 }
