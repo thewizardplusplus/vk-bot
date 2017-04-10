@@ -8,3 +8,7 @@ export function makeRegisteringMessageHandler(message_handler) {
       .then(() => logger.debug('end a message processing'))
   }
 }
+
+export function filterMessageByRegister(message) {
+  return true
+}
