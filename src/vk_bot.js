@@ -86,7 +86,9 @@ export function makeJoinRequester(message_handler) {
         extended: 1,
       })
       .then(({member}) => {
-        logger.info(`user ${message.peer_id} ${member ? 'is' : "isn't"} joined`)
+        logger.info(
+          `user ${inspect(message.peer_id)} ${member ? 'is' : "isn't"} joined`,
+        )
         if (member) {
           return message_handler(vk_bot, message)
         }
