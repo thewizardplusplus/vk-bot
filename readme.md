@@ -40,6 +40,27 @@ Symlink the package folder:
 $ sudo npm link
 ```
 
+## Update
+
+Pull updates from the repository:
+
+```
+$ cd vk-bot
+$ git pull --rebase origin master
+```
+
+Install new dependencies and rebuild the project:
+
+```
+$ npm install
+```
+
+Update the symlink to the package folder:
+
+```
+$ sudo npm link
+```
+
 ## Usage
 
 ```
