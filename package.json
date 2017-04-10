@@ -13,6 +13,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "child-process-promise": "^2.2.0",
+    "colors": "^1.1.2",
     "dotenv": "^4.0.0",
     "lokijs": "^1.4.3",
     "mkdirp": "^0.5.1",
