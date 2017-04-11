@@ -41,6 +41,47 @@ export class MessageRegister {
   }
 }
 
+export class UserRegister {
+  users = new Map()
+
+  isLastOrUnknown(user_id, message_id) {
+    const messages = this.users.get(user_id)
+    return typeof messages === 'undefined'
+      || messages.isLastOrUnknown(message_id)
+  }
+
+  add(user_id, message_id) {
+    let messages = this.users.get(user_id)
+    if (typeof messages === 'undefined') {
+      messages = new MessageRegister()
+      this.users.set(user_id, messages)
+    }
+
+    messages.addAsUnprocessed(message_id)
+  }
+
+  remove(user_id, message_id) {
+    const messages = this.users.get(user_id)
+    if (typeof messages !== 'undefined') {
+      messages.markAsProcessed(message_id)
+      this._clean(user_id, messages)
+    }
+  }
+
+  debug() {
+    logger.debug(`user register: ${inspect(this.users)}`)
+  }
+
+  _clean(user_id, messages) {
+    const cleaned_messages = messages.cleaned()
+    if (cleaned_messages.size > 1) {
+      this.users.set(user_id, cleaned_messages)
+    } else {
+      this.users.delete(user_id)
+    }
+  }
+}
+
 export function makeRegisteringMessageHandler(message_handler) {
   return (vk_bot, message) => {
     logger.debug('start a message processing')
