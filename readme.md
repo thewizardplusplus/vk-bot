@@ -11,6 +11,7 @@ Extendable [VK](http://vk.com/) group bot.
     * request of a join to the group;
     * preliminary response about a receiving of a message for a processing;
     * special response on an error in a message processing;
+* respond only to a last message from several messages received simultaneously;
 * attachments:
     * support attachments in a response (see below for details);
     * automatically load attachments from a command response;
