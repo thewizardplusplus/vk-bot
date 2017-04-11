@@ -95,5 +95,5 @@ export function makeRegisteringMessageHandler(message_handler) {
 }
 
 export function filterMessageByRegister(message) {
-  return true
+  return register.isLastOrUnknown(message.peer_id, message.id)
 }
