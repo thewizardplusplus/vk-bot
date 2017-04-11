@@ -86,11 +86,9 @@ const register = new UserRegister()
 export function makeRegisteringMessageHandler(message_handler) {
   return (vk_bot, message) => {
     register.add(message.peer_id, message.id)
-    register.debug()
 
     return message_handler(vk_bot, message)
       .then(() => register.remove(message.peer_id, message.id))
-      .then(() => register.debug())
   }
 }
 
