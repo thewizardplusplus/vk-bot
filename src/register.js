@@ -82,12 +82,15 @@ export class UserRegister {
   }
 }
 
+const register = new UserRegister()
 export function makeRegisteringMessageHandler(message_handler) {
   return (vk_bot, message) => {
-    logger.debug('start a message processing')
+    register.add(message.peer_id, message.id)
+    register.debug()
 
     return message_handler(vk_bot, message)
-      .then(() => logger.debug('end a message processing'))
+      .then(() => register.remove(message.peer_id, message.id))
+      .then(() => register.debug())
   }
 }
 
