@@ -58,14 +58,16 @@ function logError(error) {
   logger.error(`error has occurred: ${inspect(error)}`)
 }
 
-function sendResponse(vk_bot, peer_id, response) {
+function sendResponse(vk_bot, peer_id, response, log_prefix = '') {
   return vk_bot
     .send(response.message, peer_id, {
       attachment: typeof response.attachments !== 'undefined'
         ? response.attachments.join(',')
         : undefined,
     })
-    .then(() => logger.info(`response has been sent: ${inspect(response)}`))
+    .then(() => logger.info(
+      `${log_prefix}response has been sent: ${inspect(response)}`,
+    ))
 }
 
 function sendFilteredResponse(vk_bot, message, message_filter, response) {
