@@ -70,13 +70,19 @@ function sendResponse(vk_bot, peer_id, response, log_prefix = '') {
     ))
 }
 
-function sendFilteredResponse(vk_bot, message, message_filter, response) {
+function sendFilteredResponse(
+  vk_bot,
+  message,
+  message_filter,
+  response,
+  log_prefix = '',
+) {
   if (typeof message_filter !== 'undefined' && !message_filter(message)) {
-    logger.warn(`response has been filtered: ${inspect(response)}`)
+    logger.warn(`${log_prefix}response has been filtered: ${inspect(response)}`)
     return Promise.resolve()
   }
 
-  return sendResponse(vk_bot, message.peer_id, response)
+  return sendResponse(vk_bot, message.peer_id, response, log_prefix)
 }
 
 export function makeErrorHandler(message_handler, message_filter) {
