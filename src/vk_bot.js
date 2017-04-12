@@ -35,20 +35,22 @@ function makeLogPrefix(message) {
 const OUTBOX_MESSAGE_FLAG = 2
 export function makeInboxUpdateHandler(message_handler) {
   return (vk_bot, update) => {
-    logger.info(`update has been received: ${inspect(update)}`)
+    const message = {
+      id: update[1],
+      peer_id: update[3],
+      timestamp: new Date(update[4] * 1000),
+      subject: update[5],
+      text: update[6],
+    }
+    const log_prefix = makeLogPrefix(message)
+    logger.info(`${log_prefix}update has been received: ${inspect(update)}`)
 
     const update_flags = update[2]
     if (update_flags & OUTBOX_MESSAGE_FLAG) {
       return
     }
 
-    message_handler(vk_bot, {
-      id: update[1],
-      peer_id: update[3],
-      timestamp: new Date(update[4] * 1000),
-      subject: update[5],
-      text: update[6],
-    })
+    message_handler(vk_bot, message, log_prefix)
   }
 }
 
