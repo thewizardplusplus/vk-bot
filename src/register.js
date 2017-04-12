@@ -32,8 +32,8 @@ export class MessageRegister {
     return cleaned_messages
   }
 
-  debug() {
-    logger.debug(`message register: ${inspect(this.messages)}`)
+  debug(log_prefix = '') {
+    logger.debug(`${log_prefix}message register: ${inspect(this.messages)}`)
   }
 
   _getLastMessageId() {
