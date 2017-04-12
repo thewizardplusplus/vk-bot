@@ -32,16 +32,19 @@ export class Cache {
       })
   }
 
-  save() {
+  save(log_prefix = '') {
     return new Promise((resolve, reject) => this.db.saveDatabase(error => {
         error === null ? resolve() : reject(error)
       }))
       .then(() => {
-        logger.info(`cache file ${inspect(this.file)} has been saved`)
+        logger.info(
+          `${log_prefix}cache file ${inspect(this.file)} has been saved`,
+        )
       })
       .catch(error => {
         logger.error(
-          `unable to save cache file ${inspect(this.file)}: ${inspect(error)}`,
+          `${log_prefix}unable to save cache file ${inspect(this.file)}: `
+            + inspect(error),
         )
       })
   }
