@@ -103,7 +103,7 @@ export function makeErrorHandler(message_handler, message_filter) {
 }
 
 export function makeJoinRequester(message_handler, message_filter) {
-  return (vk_bot, message) => {
+  return (vk_bot, message, log_prefix = '') => {
     return vk_bot
       .api('groups.isMember', {
         group_id: process.env.VK_BOT_GROUP,
@@ -112,17 +112,20 @@ export function makeJoinRequester(message_handler, message_filter) {
       })
       .then(({member}) => {
         logger.info(
-          `user ${inspect(message.peer_id)} ${member ? 'is' : "isn't"} joined`,
+          `${log_prefix}user ${inspect(message.peer_id)} `
+            + `${member ? 'is' : "isn't"} joined`,
         )
         if (member) {
-          return message_handler(vk_bot, message)
+          return message_handler(vk_bot, message, log_prefix)
         }
 
-        logger.info(`message has been received: ${inspect(message)}`)
+        logger.info(
+          `${log_prefix}message has been received: ${inspect(message)}`,
+        )
         return sendFilteredResponse(vk_bot, message, message_filter, {
           message: process.env.VK_BOT_JOIN_REQUEST
             || 'Hello! To talk to me, please, join my group.',
-        })
+        }, log_prefix)
       })
   }
 }
