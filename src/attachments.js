@@ -23,17 +23,20 @@ export function makeAttachmentId(owner_id, attachment_id) {
 }
 
 export function makeAttachmentsHandler(attachment_loader) {
-  return (vk_bot, response) => {
-    logger.info(`response has been received: ${inspect(response)}`)
+  return (vk_bot, response, log_prefix = '') => {
+    logger.info(`${log_prefix}response has been received: ${inspect(response)}`)
 
     const {cleaned_response, attachments} = extractAttachments(response)
     return Promise
       .all(attachments.map(attachment => attachment_loader(
         vk_bot,
         path.resolve(attachment),
+        log_prefix,
       )))
       .then(attachments => {
-        logger.info(`attachments have been loaded: ${inspect(attachments)}`)
+        logger.info(
+          `${log_prefix}attachments have been loaded: ${inspect(attachments)}`,
+        )
 
         return {
           message: cleaned_response,
