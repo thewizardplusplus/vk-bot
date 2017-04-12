@@ -54,8 +54,8 @@ export function makeInboxUpdateHandler(message_handler) {
   }
 }
 
-function logError(error) {
-  logger.error(`error has occurred: ${inspect(error)}`)
+function logError(error, log_prefix = '') {
+  logger.error(`${log_prefix}error has occurred: ${inspect(error)}`)
 }
 
 function sendResponse(vk_bot, peer_id, response, log_prefix = '') {
