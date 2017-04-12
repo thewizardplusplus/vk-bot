@@ -1,6 +1,7 @@
 import {Bot} from 'node-vk-bot'
 import VkApi from 'node-vkapi'
 import {logger, inspect} from './logger'
+import colors from 'colors/safe'
 
 export function initVkBot(update_handler) {
   const vk_bot = new Bot({
@@ -24,6 +25,11 @@ export function initVkBot(update_handler) {
   vk_bot.start()
 
   logger.info('VK bot has been initialized')
+}
+
+function makeLogPrefix(message) {
+  const message_id = `#${message.peer_id}.${message.id}`
+  return `${colors.blue(message_id)} - `
 }
 
 const OUTBOX_MESSAGE_FLAG = 2
