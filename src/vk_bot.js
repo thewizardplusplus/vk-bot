@@ -28,8 +28,12 @@ export function initVkBot(update_handler) {
 }
 
 function makeLogPrefix(message) {
-  const message_id = `#${message.peer_id}.${message.id}`
-  return `${colors.blue(message_id)} - `
+  let message_id = `#${message.peer_id}.${message.id}`
+  if (process.env.VK_BOT_COLORFUL_LOG === 'TRUE') {
+    message_id = colors.blue(message_id)
+  }
+
+  return `${message_id} - `
 }
 
 const OUTBOX_MESSAGE_FLAG = 2
