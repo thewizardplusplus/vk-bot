@@ -23,8 +23,8 @@ function runCommand(message, log_prefix = '') {
 }
 
 export default function makeCommandRunner(response_handler) {
-  return (vk_bot, message) => {
-    return runCommand(JSON.stringify(message))
-      .then(response => response_handler(vk_bot, response))
+  return (vk_bot, message, log_prefix = '') => {
+    return runCommand(JSON.stringify(message), log_prefix)
+      .then(response => response_handler(vk_bot, response, log_prefix))
   }
 }
