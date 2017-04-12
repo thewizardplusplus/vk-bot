@@ -80,8 +80,8 @@ export class Cache {
       .then(() => attachment)
   }
 
-  debug() {
-    logger.debug(`cache: ${inspect(this.collection.find({}))}`)
+  debug(log_prefix = '') {
+    logger.debug(`${log_prefix}cache: ${inspect(this.collection.find({}))}`)
   }
 
   _getCollection() {
