@@ -86,18 +86,18 @@ function sendFilteredResponse(
 }
 
 export function makeErrorHandler(message_handler, message_filter) {
-  return (vk_bot, message) => {
-    return message_handler(vk_bot, message)
+  return (vk_bot, message, log_prefix = '') => {
+    return message_handler(vk_bot, message, log_prefix)
       .catch(error => {
-        logError(error)
+        logError(error, log_prefix)
 
         return sendFilteredResponse(vk_bot, message, message_filter, {
           message: process.env.VK_BOT_ERROR
             || "I'm sorry, but error has occurred "
               + 'on a processing of your message. '
               + 'Please, try again.',
-        })
-          .catch(logError)
+        }, log_prefix)
+          .catch(error => logError(error, log_prefix))
       })
   }
 }
