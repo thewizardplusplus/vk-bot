@@ -1,13 +1,13 @@
 import {exec} from 'child-process-promise'
 import {logger, inspect} from './logger'
 
-function runCommand(message) {
+function runCommand(message, log_prefix = '') {
   const command_promise = exec(process.env.VK_BOT_COMMAND)
     .then(result => {
       if (result.stderr !== '') {
         logger.error(
-          `command ${inspect(process.env.VK_BOT_COMMAND)} returns error: `
-            + inspect(result.stderr),
+          `${log_prefix}command ${inspect(process.env.VK_BOT_COMMAND)} `
+            + `returns error: ${inspect(result.stderr)}`,
         )
       }
 
@@ -16,7 +16,9 @@ function runCommand(message) {
   command_promise.childProcess.stdin.write(message)
   command_promise.childProcess.stdin.end()
 
-  logger.info(`command ${inspect(process.env.VK_BOT_COMMAND)} has been run`)
+  logger.info(
+    `${log_prefix}command ${inspect(process.env.VK_BOT_COMMAND)} has been run`,
+  )
   return command_promise
 }
 
