@@ -138,22 +138,23 @@ function readPreliminaryResponse() {
 }
 
 export function makeEchoMessageHandler(message_handler, message_filter) {
-  return (vk_bot, message) => {
-    logger.info(`message has been received: ${inspect(message)}`)
+  return (vk_bot, message, log_prefix = '') => {
+    logger.info(`${log_prefix}message has been received: ${inspect(message)}`)
 
     const preliminary_response = readPreliminaryResponse()
     const response_promise = preliminary_response !== ''
       ? sendFilteredResponse(vk_bot, message, message_filter, {
         message: preliminary_response,
-      })
+      }, log_prefix)
       : Promise.resolve()
     return response_promise
-      .then(() => message_handler(vk_bot, message))
+      .then(() => message_handler(vk_bot, message, log_prefix))
       .then(response => sendFilteredResponse(
         vk_bot,
         message,
         message_filter,
         response,
+        log_prefix,
       ))
   }
 }
