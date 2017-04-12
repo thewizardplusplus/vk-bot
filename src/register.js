@@ -68,8 +68,8 @@ export class UserRegister {
     }
   }
 
-  debug() {
-    logger.debug(`user register: ${inspect(this.users)}`)
+  debug(log_prefix = '') {
+    logger.debug(`${log_prefix}user register: ${inspect(this.users)}`)
   }
 
   _clean(user_id, messages) {
