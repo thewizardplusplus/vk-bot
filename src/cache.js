@@ -76,10 +76,10 @@ export class Cache {
     })
   }
 
-  addAndSave(attachment_id, attachment_path) {
+  addAndSave(attachment_id, attachment_path, log_prefix = '') {
     const attachment = this.add(attachment_id, attachment_path)
     return this
-      .save()
+      .save(log_prefix)
       .then(() => attachment)
   }
 
