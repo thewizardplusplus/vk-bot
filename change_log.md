@@ -1,5 +1,23 @@
 # Change Log
 
+## [v1.3.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.3.0) (2017-04-13)
+
+**Closed issues:**
+
+* Responses:
+	- Respond only to a last message from several messages received simultaneously [\#19](https://github.com/thewizardplusplus/vk-bot/issues/19)
+	- Support a special response on an error in a message processing [\#17](https://github.com/thewizardplusplus/vk-bot/issues/17)
+* Log:
+	- Mark log messages about a processing of a same user message [\#25](https://github.com/thewizardplusplus/vk-bot/issues/25)
+	- Add a setting of a colorful log [\#23](https://github.com/thewizardplusplus/vk-bot/issues/23)
+	- Don't split log messages across multiple lines [\#22](https://github.com/thewizardplusplus/vk-bot/issues/22)
+- Add a setting of a `.env` config path [\#24](https://github.com/thewizardplusplus/vk-bot/issues/24)
+- Limit a frequency of requests to [VK](http://vk.com/) API [\#18](https://github.com/thewizardplusplus/vk-bot/issues/18)
+
+**Fixed bugs:**
+
+- Process errors on a join request [\#20](https://github.com/thewizardplusplus/vk-bot/issues/20)
+
 ## [v1.2.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.2.0) (2017-04-02)
 
 **Closed issues:**
