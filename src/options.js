@@ -33,6 +33,8 @@ const EPILOG =
   VK_BOT_ONLY_LAST      Respond only to a last message from several    [boolean]
                         messages received simultaneously (allowed:
                         TRUE)
+  VK_BOT_API_DELAY      Base delay between calls to VK API in ms       [integer]
+                        (default: 50)
 
 Copyright (C) 2017-2018 thewizardplusplus`
 export default function processOptions() {

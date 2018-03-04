@@ -89,7 +89,8 @@ Environment variables:
 * `VK_BOT_REQUIRE_JOIN` &mdash; require join to the group before start a conversation (allowed: `TRUE`);
 * `VK_BOT_JOIN_REQUEST` &mdash; request of a join to the group (default: `Hello! To talk to me, please, join my group.`);
 * `VK_BOT_ERROR` &mdash; special response on an error in a message processing (default: `I'm sorry, but error has occurred on a processing of your message. Please, try again.`);
-* `VK_BOT_ONLY_LAST` &mdash; respond only to a last message from several messages received simultaneously (allowed: `TRUE`).
+* `VK_BOT_ONLY_LAST` &mdash; respond only to a last message from several messages received simultaneously (allowed: `TRUE`);
+* `VK_BOT_API_DELAY` &mdash; base delay between calls to VK API in ms (default: 50).
 
 Environment variables can be specified in a `.env` config in the format:
 
