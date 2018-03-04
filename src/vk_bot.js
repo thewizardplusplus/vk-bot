@@ -22,6 +22,9 @@ export function initVkBot(update_handler) {
   vk_bot.on('update', update => {
     update_handler(vk_bot, update)
   })
+  vk_bot.on('poll-error', error => {
+    logError(error, 'Long Poll ')
+  })
   vk_bot.start()
 
   logger.info('VK bot has been initialized')
