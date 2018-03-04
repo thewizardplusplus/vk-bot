@@ -13,8 +13,8 @@ export function initVkBot(update_handler) {
     },
   })
   const vk_api_client = new VkApi({
-    token: vk_bot.options.token,
-    version: vk_bot.options.api.v.toString(),
+    accessToken: vk_bot.options.token,
+    apiVersion: vk_bot.options.api.v.toString(),
   })
   vk_bot.api = (method, parameters) => vk_api_client.call(method, {
     lang: vk_bot.options.api.lang,
