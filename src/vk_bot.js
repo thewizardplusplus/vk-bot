@@ -4,6 +4,7 @@ import {logger, inspect} from './logger'
 import colors from 'colors/safe'
 
 const LONG_POLL_DELAY = 0
+const DEFAULT_API_DELAY = 50
 export function initVkBot(update_handler) {
   const vk_bot = new Bot({
     token: process.env.VK_BOT_TOKEN,
@@ -15,6 +16,7 @@ export function initVkBot(update_handler) {
   const vk_api_client = new VkApi({
     accessToken: vk_bot.options.token,
     apiVersion: vk_bot.options.api.v.toString(),
+    baseDelay: parseInt(process.env.VK_BOT_API_DELAY, 10) || DEFAULT_API_DELAY,
   })
   vk_bot.api = (method, parameters) => vk_api_client.call(method, {
     lang: vk_bot.options.api.lang,
