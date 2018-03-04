@@ -34,7 +34,7 @@ const EPILOG =
                         messages received simultaneously (allowed:
                         TRUE)
 
-Copyright (C) 2017 thewizardplusplus`
+Copyright (C) 2017-2018 thewizardplusplus`
 export default function processOptions() {
   return yargs
     .locale('en')
