@@ -3,6 +3,7 @@ import VkApi from 'node-vkapi'
 import {logger, inspect} from './logger'
 import colors from 'colors/safe'
 
+const LONG_POLL_DELAY = 0
 export function initVkBot(update_handler) {
   const vk_bot = new Bot({
     token: process.env.VK_BOT_TOKEN,
@@ -25,7 +26,7 @@ export function initVkBot(update_handler) {
   vk_bot.on('poll-error', error => {
     logError(error, 'Long Poll ')
   })
-  vk_bot.start()
+  vk_bot.start(LONG_POLL_DELAY)
 
   logger.info('VK bot has been initialized')
 }
