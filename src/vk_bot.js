@@ -2,6 +2,7 @@ import {Bot} from 'node-vk-bot'
 import VkApi from 'node-vkapi'
 import {logger, inspect} from './logger'
 import colors from 'colors/safe'
+import fs from 'fs'
 
 const LONG_POLL_DELAY = 0
 const DEFAULT_API_DELAY = 50
@@ -22,6 +23,11 @@ export function initVkBot(update_handler) {
     lang: vk_bot.options.api.lang,
     ...parameters,
   })
+  vk_bot.uploadPhoto = (path, peer_id) =>
+    vk_api_client.upload('photo_pm', fs.createReadStream(path), {
+      lang: vk_bot.options.api.lang,
+      peer_id,
+    })
   vk_bot.on('update', update => {
     update_handler(vk_bot, update)
   })

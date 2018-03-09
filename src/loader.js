@@ -17,7 +17,7 @@ export default function makeCachedAttachmentLoader(cache) {
 
     return vk_bot
       .uploadPhoto(path)
-      .then(({owner_id, id}) => {
+      .then(([{owner_id, id}]) => {
         logger.info(`${log_prefix}attachment ${inspect(path)} has been loaded`)
 
         const attachment_id = makeAttachmentId(owner_id, id)
