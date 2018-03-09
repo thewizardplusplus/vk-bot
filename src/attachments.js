@@ -23,7 +23,7 @@ export function makeAttachmentId(owner_id, attachment_id) {
 }
 
 export function makeAttachmentsHandler(attachment_loader) {
-  return (vk_bot, response, log_prefix = '') => {
+  return (vk_bot, response, peer_id, log_prefix = '') => {
     logger.info(`${log_prefix}response has been received: ${inspect(response)}`)
 
     const {cleaned_response, attachments} = extractAttachments(response)
@@ -31,6 +31,7 @@ export function makeAttachmentsHandler(attachment_loader) {
       .all(attachments.map(attachment => attachment_loader(
         vk_bot,
         path.resolve(attachment),
+        peer_id,
         log_prefix,
       )))
       .then(attachments => {

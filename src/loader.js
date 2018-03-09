@@ -2,7 +2,7 @@ import {logger, inspect} from './logger'
 import {makeAttachmentId} from './attachments'
 
 export default function makeCachedAttachmentLoader(cache) {
-  return (vk_bot, path, log_prefix = '') => {
+  return (vk_bot, path, peer_id, log_prefix = '') => {
     const attachment = cache.get(
       path,
       process.env.VK_BOT_INEXACT_CACHE === 'TRUE',
@@ -16,7 +16,7 @@ export default function makeCachedAttachmentLoader(cache) {
     }
 
     return vk_bot
-      .uploadPhoto(path)
+      .uploadPhoto(path, peer_id)
       .then(([{owner_id, id}]) => {
         logger.info(`${log_prefix}attachment ${inspect(path)} has been loaded`)
 
