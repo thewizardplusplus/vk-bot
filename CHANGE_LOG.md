@@ -1,5 +1,22 @@
 # Change Log
 
+## [v1.4.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.4.0) (2018-03-13)
+
+**Closed issues:**
+
+- Use a community mode for a photos uploading [\#40](https://github.com/thewizardplusplus/vk-bot/issues/40)
+* Update:
+    - Update dependencies [\#33](https://github.com/thewizardplusplus/vk-bot/issues/33)
+    - Update the node-vk-bot package to v0.2.6 [\#35](https://github.com/thewizardplusplus/vk-bot/issues/35):
+        - Log errors in a working with the Long Poll server [\#36](https://github.com/thewizardplusplus/vk-bot/issues/36)
+        - Set a zero delay before a restart of the Long Poll client [\#37](https://github.com/thewizardplusplus/vk-bot/issues/37)
+    - Update the node-vkapi package to v3.0.7 [\#38](https://github.com/thewizardplusplus/vk-bot/issues/38):
+        - Support a custom delay between calls to VK API [\#39](https://github.com/thewizardplusplus/vk-bot/issues/39)
+* Package:
+    - Use an uppercase in names of services files [\#31](https://github.com/thewizardplusplus/vk-bot/issues/31)
+    - Update copyright years [\#32](https://github.com/thewizardplusplus/vk-bot/issues/32)
+    - Add the VK\_BOT\_COLORFUL\_LOG environment variable to the example of a .env config [\#34](https://github.com/thewizardplusplus/vk-bot/issues/34)
+
 ## [v1.3.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.3.0) (2017-04-13)
 
 **Closed issues:**
