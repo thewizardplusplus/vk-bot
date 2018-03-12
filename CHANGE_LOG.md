@@ -4,68 +4,68 @@
 
 **Closed issues:**
 
-- Use a community mode for a photos uploading [\#40](https://github.com/thewizardplusplus/vk-bot/issues/40)
+* Use a community mode for a photos uploading [\#40](https://github.com/thewizardplusplus/vk-bot/issues/40)
 * Update:
-    - Update dependencies [\#33](https://github.com/thewizardplusplus/vk-bot/issues/33)
-    - Update the node-vk-bot package to v0.2.6 [\#35](https://github.com/thewizardplusplus/vk-bot/issues/35):
-        - Log errors in a working with the Long Poll server [\#36](https://github.com/thewizardplusplus/vk-bot/issues/36)
-        - Set a zero delay before a restart of the Long Poll client [\#37](https://github.com/thewizardplusplus/vk-bot/issues/37)
-    - Update the node-vkapi package to v3.0.7 [\#38](https://github.com/thewizardplusplus/vk-bot/issues/38):
-        - Support a custom delay between calls to VK API [\#39](https://github.com/thewizardplusplus/vk-bot/issues/39)
+    * Update dependencies [\#33](https://github.com/thewizardplusplus/vk-bot/issues/33)
+    * Update the node-vk-bot package to v0.2.6 [\#35](https://github.com/thewizardplusplus/vk-bot/issues/35):
+        * Log errors in a working with the Long Poll server [\#36](https://github.com/thewizardplusplus/vk-bot/issues/36)
+        * Set a zero delay before a restart of the Long Poll client [\#37](https://github.com/thewizardplusplus/vk-bot/issues/37)
+    * Update the node-vkapi package to v3.0.7 [\#38](https://github.com/thewizardplusplus/vk-bot/issues/38):
+        * Support a custom delay between calls to VK API [\#39](https://github.com/thewizardplusplus/vk-bot/issues/39)
 * Package:
-    - Use an uppercase in names of services files [\#31](https://github.com/thewizardplusplus/vk-bot/issues/31)
-    - Update copyright years [\#32](https://github.com/thewizardplusplus/vk-bot/issues/32)
-    - Add the VK\_BOT\_COLORFUL\_LOG environment variable to the example of a .env config [\#34](https://github.com/thewizardplusplus/vk-bot/issues/34)
+    * Use an uppercase in names of services files [\#31](https://github.com/thewizardplusplus/vk-bot/issues/31)
+    * Update copyright years [\#32](https://github.com/thewizardplusplus/vk-bot/issues/32)
+    * Add the VK\_BOT\_COLORFUL\_LOG environment variable to the example of a .env config [\#34](https://github.com/thewizardplusplus/vk-bot/issues/34)
 
 ## [v1.3.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.3.0) (2017-04-13)
 
 **Closed issues:**
 
 * Responses:
-	- Respond only to a last message from several messages received simultaneously [\#19](https://github.com/thewizardplusplus/vk-bot/issues/19)
-	- Support a special response on an error in a message processing [\#17](https://github.com/thewizardplusplus/vk-bot/issues/17)
+    * Respond only to a last message from several messages received simultaneously [\#19](https://github.com/thewizardplusplus/vk-bot/issues/19)
+    * Support a special response on an error in a message processing [\#17](https://github.com/thewizardplusplus/vk-bot/issues/17)
 * Log:
-	- Mark log messages about a processing of a same user message [\#25](https://github.com/thewizardplusplus/vk-bot/issues/25)
-	- Add a setting of a colorful log [\#23](https://github.com/thewizardplusplus/vk-bot/issues/23)
-	- Don't split log messages across multiple lines [\#22](https://github.com/thewizardplusplus/vk-bot/issues/22)
-- Add a setting of a `.env` config path [\#24](https://github.com/thewizardplusplus/vk-bot/issues/24)
-- Limit a frequency of requests to [VK](http://vk.com/) API [\#18](https://github.com/thewizardplusplus/vk-bot/issues/18)
+    * Mark log messages about a processing of a same user message [\#25](https://github.com/thewizardplusplus/vk-bot/issues/25)
+    * Add a setting of a colorful log [\#23](https://github.com/thewizardplusplus/vk-bot/issues/23)
+    * Don't split log messages across multiple lines [\#22](https://github.com/thewizardplusplus/vk-bot/issues/22)
+* Add a setting of a `.env` config path [\#24](https://github.com/thewizardplusplus/vk-bot/issues/24)
+* Limit a frequency of requests to [VK](http://vk.com/) API [\#18](https://github.com/thewizardplusplus/vk-bot/issues/18)
 
 **Fixed bugs:**
 
-- Process errors on a join request [\#20](https://github.com/thewizardplusplus/vk-bot/issues/20)
+* Process errors on a join request [\#20](https://github.com/thewizardplusplus/vk-bot/issues/20)
 
 ## [v1.2.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.2.0) (2017-04-02)
 
 **Closed issues:**
 
 * Special responses:
-    - Support a request of a join to the group [\#15](https://github.com/thewizardplusplus/vk-bot/issues/15)
-    - Support a preliminary response about a receiving of a message for a processing [\#10](https://github.com/thewizardplusplus/vk-bot/issues/10)
+    * Support a request of a join to the group [\#15](https://github.com/thewizardplusplus/vk-bot/issues/15)
+    * Support a preliminary response about a receiving of a message for a processing [\#10](https://github.com/thewizardplusplus/vk-bot/issues/10)
 * Log:
-    - Use the error log level for a cache save error [\#14](https://github.com/thewizardplusplus/vk-bot/issues/14)
-    - Log stderr of an outer command [\#13](https://github.com/thewizardplusplus/vk-bot/issues/13)
-    - Log about a response sending [\#12](https://github.com/thewizardplusplus/vk-bot/issues/12)
-- Simplify an environment variables processing [\#16](https://github.com/thewizardplusplus/vk-bot/issues/16)
+    * Use the error log level for a cache save error [\#14](https://github.com/thewizardplusplus/vk-bot/issues/14)
+    * Log stderr of an outer command [\#13](https://github.com/thewizardplusplus/vk-bot/issues/13)
+    * Log about a response sending [\#12](https://github.com/thewizardplusplus/vk-bot/issues/12)
+* Simplify an environment variables processing [\#16](https://github.com/thewizardplusplus/vk-bot/issues/16)
 
 **Fixed bugs:**
 
-- Use the error log level for the global error message [\#11](https://github.com/thewizardplusplus/vk-bot/issues/11)
+* Use the error log level for the global error message [\#11](https://github.com/thewizardplusplus/vk-bot/issues/11)
 
 ## [v1.1.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.1.0) (2017-04-02)
 
 **Closed issues:**
 
-- Add an example of a command [\#9](https://github.com/thewizardplusplus/vk-bot/issues/9)
-- Add a file logger [\#8](https://github.com/thewizardplusplus/vk-bot/issues/8)
-- Normalize and make absolute attachments paths [\#5](https://github.com/thewizardplusplus/vk-bot/issues/5)
-- Cache loaded attachments [\#4](https://github.com/thewizardplusplus/vk-bot/issues/4)
-- Automatically load attachments from a command response [\#2](https://github.com/thewizardplusplus/vk-bot/issues/2)
-- Support attachments in a response [\#1](https://github.com/thewizardplusplus/vk-bot/issues/1)
-- Development:
-    - Use class properties transform Babel plugin [\#7](https://github.com/thewizardplusplus/vk-bot/issues/7)
-    - Replace latest Babel preset to env Babel preset [\#6](https://github.com/thewizardplusplus/vk-bot/issues/6)
-    - Support a hot code reloading [\#3](https://github.com/thewizardplusplus/vk-bot/issues/3)
+* Add an example of a command [\#9](https://github.com/thewizardplusplus/vk-bot/issues/9)
+* Add a file logger [\#8](https://github.com/thewizardplusplus/vk-bot/issues/8)
+* Normalize and make absolute attachments paths [\#5](https://github.com/thewizardplusplus/vk-bot/issues/5)
+* Cache loaded attachments [\#4](https://github.com/thewizardplusplus/vk-bot/issues/4)
+* Automatically load attachments from a command response [\#2](https://github.com/thewizardplusplus/vk-bot/issues/2)
+* Support attachments in a response [\#1](https://github.com/thewizardplusplus/vk-bot/issues/1)
+* Development:
+    * Use class properties transform Babel plugin [\#7](https://github.com/thewizardplusplus/vk-bot/issues/7)
+    * Replace latest Babel preset to env Babel preset [\#6](https://github.com/thewizardplusplus/vk-bot/issues/6)
+    * Support a hot code reloading [\#3](https://github.com/thewizardplusplus/vk-bot/issues/3)
 
 ## [v1.0.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.0.0) (2017-03-29)
 
