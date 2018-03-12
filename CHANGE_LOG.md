@@ -12,7 +12,7 @@
         * Set a zero delay before a restart of the Long Poll client [\#37](https://github.com/thewizardplusplus/vk-bot/issues/37)
     * Update the node-vkapi package to v3.0.7 [\#38](https://github.com/thewizardplusplus/vk-bot/issues/38):
         * Support a custom delay between calls to VK API [\#39](https://github.com/thewizardplusplus/vk-bot/issues/39)
-* Package:
+* npm package:
     * Use an uppercase in names of services files [\#31](https://github.com/thewizardplusplus/vk-bot/issues/31)
     * Update copyright years [\#32](https://github.com/thewizardplusplus/vk-bot/issues/32)
     * Add the VK\_BOT\_COLORFUL\_LOG environment variable to the example of a .env config [\#34](https://github.com/thewizardplusplus/vk-bot/issues/34)
