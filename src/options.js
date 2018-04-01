@@ -26,6 +26,11 @@ const EPILOG =
                         a conversation (allowed: TRUE)
   VK_BOT_JOIN_REQUEST   Request of a join to the group (default:       [string]
                         Hello! To talk to me, please, join my group.)
+  VK_BOT_PLEAD_JOIN     Plead join to the group after each response    [boolean]
+                        (allowed: TRUE)
+  VK_BOT_JOIN_PLEA      Plea about a join to the group (default:       [string]
+                        You aren't in my group, would you like to
+                        join it?)
   VK_BOT_ERROR          Special response on an error in a message      [string]
                         processing (default: I'm sorry, but error has
                         occurred on a processing of your message.

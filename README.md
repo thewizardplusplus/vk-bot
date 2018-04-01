@@ -88,6 +88,8 @@ Environment variables:
 * `VK_BOT_PRELIMINARILY` &mdash; preliminary response about a receiving of a message for a processing (default: `Hello! Your message is being processed. Please, wait.`);
 * `VK_BOT_REQUIRE_JOIN` &mdash; require join to the group before start a conversation (allowed: `TRUE`);
 * `VK_BOT_JOIN_REQUEST` &mdash; request of a join to the group (default: `Hello! To talk to me, please, join my group.`);
+* `VK_BOT_PLEAD_JOIN` &mdash; plead join to the group after each response (allowed: `TRUE`);
+* `VK_BOT_JOIN_PLEA` &mdash; plea about a join to the group (default: `You aren't in my group, would you like to join it?`);
 * `VK_BOT_ERROR` &mdash; special response on an error in a message processing (default: `I'm sorry, but error has occurred on a processing of your message. Please, try again.`);
 * `VK_BOT_ONLY_LAST` &mdash; respond only to a last message from several messages received simultaneously (allowed: `TRUE`);
 * `VK_BOT_API_DELAY` &mdash; base delay between calls to VK API in ms (default: 50).
