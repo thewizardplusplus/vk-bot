@@ -8,13 +8,16 @@ Extendable [VK](http://vk.com/) group bot.
 * process messages by the specified outer command:
     * serialize a message object (see below for details) to the JSON format;
 * special responses:
-    * request of a join to the group;
+    * join to the group:
+        * request of it before a start of a conversation;
+        * plea about it after each response;
     * preliminary response about a receiving of a message for a processing;
     * special response on an error in a message processing;
 * respond only to a last message from several messages received simultaneously;
 * attachments:
     * support attachments in a response (see below for details);
-    * automatically load attachments from a command response;
+    * automatically load attachments from a command response:
+        * use a community mode for an attachments uploading;
     * cache loaded attachments:
         * search in a cache by:
             * attachment path;
