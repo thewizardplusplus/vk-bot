@@ -146,6 +146,28 @@ export function makeJoinRequester(message_handler, message_filter) {
   }
 }
 
+export function makeJoinPleader(message_handler, message_filter) {
+  return (vk_bot, message, log_prefix = '') => {
+    return message_handler(vk_bot, message, log_prefix)
+      .then(() => vk_bot.api('groups.isMember', {
+        group_id: process.env.VK_BOT_GROUP,
+        user_id: message.peer_id,
+        extended: 1,
+      }))
+      .then(({member}) => {
+        logger.info(
+          `${log_prefix}user ${inspect(message.peer_id)} `
+            + `${member ? 'is' : "isn't"} joined`,
+        )
+
+        return member || sendFilteredResponse(vk_bot, message, message_filter, {
+          message: process.env.VK_BOT_JOIN_PLEA
+            || "You aren't in my group, would you like to join it?",
+        }, log_prefix)
+      })
+  }
+}
+
 function readPreliminaryResponse() {
   // empty value is significant
   return typeof process.env.VK_BOT_PRELIMINARILY !== 'undefined'

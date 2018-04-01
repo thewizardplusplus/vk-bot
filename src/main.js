@@ -13,6 +13,7 @@ import {
   makeInboxUpdateHandler,
   makeErrorHandler,
   makeJoinRequester,
+  makeJoinPleader,
   makeEchoMessageHandler,
 } from './vk_bot'
 import {
@@ -39,6 +40,9 @@ initFileLogger()
     )
     if (process.env.VK_BOT_REQUIRE_JOIN === 'TRUE') {
       message_handler = makeJoinRequester(message_handler, message_filter)
+    }
+    if (process.env.VK_BOT_PLEAD_JOIN === 'TRUE') {
+      message_handler = makeJoinPleader(message_handler, message_filter)
     }
 
     message_handler = makeErrorHandler(message_handler, message_filter)
