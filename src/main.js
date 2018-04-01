@@ -32,17 +32,19 @@ initFileLogger()
   .then(cache => {
     const only_last = process.env.VK_BOT_ONLY_LAST === 'TRUE'
     const message_filter = only_last ? filterMessageByRegister : undefined
+    let response_handler = makeAttachmentsHandler(
+      makeCachedAttachmentLoader(cache),
+    )
+    if (process.env.VK_BOT_PLEAD_JOIN === 'TRUE') {
+      response_handler = makeJoinPleader(response_handler, message_filter)
+    }
+
     let message_handler = makeEchoMessageHandler(
-      makeCommandRunner(
-        makeAttachmentsHandler(makeCachedAttachmentLoader(cache)),
-      ),
+      makeCommandRunner(response_handler),
       message_filter,
     )
     if (process.env.VK_BOT_REQUIRE_JOIN === 'TRUE') {
       message_handler = makeJoinRequester(message_handler, message_filter)
-    }
-    if (process.env.VK_BOT_PLEAD_JOIN === 'TRUE') {
-      message_handler = makeJoinPleader(message_handler, message_filter)
     }
 
     message_handler = makeErrorHandler(message_handler, message_filter)

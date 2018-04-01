@@ -118,16 +118,16 @@ export function makeErrorHandler(message_handler, message_filter) {
   }
 }
 
-function checkMembership(vk_bot, message, log_prefix = '') {
+function checkMembership(vk_bot, peer_id, log_prefix = '') {
   return vk_bot
     .api('groups.isMember', {
       group_id: process.env.VK_BOT_GROUP,
-      user_id: message.peer_id,
+      user_id: peer_id,
       extended: 1,
     })
     .then(({member}) => {
       logger.info(
-        `${log_prefix}user ${inspect(message.peer_id)} `
+        `${log_prefix}user ${inspect(peer_id)} `
           + `${member ? 'is' : "isn't"} joined`,
       )
 
@@ -137,7 +137,7 @@ function checkMembership(vk_bot, message, log_prefix = '') {
 
 export function makeJoinRequester(message_handler, message_filter) {
   return (vk_bot, message, log_prefix = '') => {
-    return checkMembership(vk_bot, message, log_prefix)
+    return checkMembership(vk_bot, message.peer_id, log_prefix)
       .then(is_member => {
         if (is_member) {
           return message_handler(vk_bot, message, log_prefix)
@@ -154,19 +154,25 @@ export function makeJoinRequester(message_handler, message_filter) {
   }
 }
 
-export function makeJoinPleader(message_handler, message_filter) {
-  return (vk_bot, message, log_prefix = '') => {
-    return message_handler(vk_bot, message, log_prefix)
-      .then(() => checkMembership(vk_bot, message, log_prefix))
-      .then(is_member => {
-        if (is_member) {
-          return
-        }
+function addJoinPleaResponse(response) {
+  const join_plea_response = process.env.VK_BOT_JOIN_PLEA
+    || "You aren't in my group, would you like to join it?"
+  return [response, join_plea_response]
+    .map(part => part.trim())
+    .join('\n\n')
+}
 
-        return sendFilteredResponse(vk_bot, message, message_filter, {
-          message: process.env.VK_BOT_JOIN_PLEA
-            || "You aren't in my group, would you like to join it?",
-        }, log_prefix)
+export function makeJoinPleader(response_handler, message_filter) {
+  return (vk_bot, response, peer_id, log_prefix = '') => {
+    return response_handler(vk_bot, response, peer_id, log_prefix)
+      .then(response => {
+        return checkMembership(vk_bot, peer_id, log_prefix)
+          .then(is_member => ({
+            ...response,
+            message: !is_member
+              ? addJoinPleaResponse(response.message)
+              : response.message,
+          }))
       })
   }
 }
