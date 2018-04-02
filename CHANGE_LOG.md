@@ -1,5 +1,11 @@
 # Change Log
 
+## [v1.5.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.5.0) (2018-04-02)
+
+**Closed issues:**
+
+- Support a plea about a join to the group after each response [\#42](https://github.com/thewizardplusplus/vk-bot/issues/42)
+
 ## [v1.4.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.4.0) (2018-03-13)
 
 **Closed issues:**
