@@ -139,9 +139,13 @@ Messages processing
 
 Conversation with the bot
 
-![Request of a join to the group](screenshots/screenshot_03.png)
+![Request of a join to the group](screenshots/screenshot_03.00.png)
 
 Request of a join to the group
+
+![Plea about a join to the group](screenshots/screenshot_03.01.png)
+
+Plea about a join to the group
 
 ![Error in a message processing](screenshots/screenshot_04.png)
 
