@@ -27,7 +27,7 @@ processEnv(options.config)
 initFileLogger()
   .then(() => {
     switchColorfulLogs()
-    return initCache()
+    return process.env.VK_BOT_USE_CACHE === 'TRUE' ? initCache() : undefined
   })
   .then(cache => {
     let attachment_loader = makeAttachmentLoader()
