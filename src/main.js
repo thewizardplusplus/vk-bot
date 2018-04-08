@@ -30,11 +30,14 @@ initFileLogger()
     return initCache()
   })
   .then(cache => {
+    let attachment_loader = makeAttachmentLoader()
+    if (process.env.VK_BOT_USE_CACHE === 'TRUE') {
+      attachment_loader = makeCachedAttachmentLoader(cache, attachment_loader)
+    }
+
     const only_last = process.env.VK_BOT_ONLY_LAST === 'TRUE'
     const message_filter = only_last ? filterMessageByRegister : undefined
-    let response_handler = makeAttachmentsHandler(
-      makeCachedAttachmentLoader(cache, makeAttachmentLoader()),
-    )
+    let response_handler = makeAttachmentsHandler(attachment_loader)
     if (process.env.VK_BOT_PLEAD_JOIN === 'TRUE') {
       response_handler = makeJoinPleader(response_handler, message_filter)
     }
