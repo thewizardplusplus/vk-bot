@@ -12,7 +12,7 @@ export function makeAttachmentLoader() {
   }
 }
 
-export default function makeCachedAttachmentLoader(cache) {
+export function makeCachedAttachmentLoader(cache, attachment_loader) {
   return (vk_bot, path, peer_id, log_prefix = '') => {
     const attachment = cache.get(
       path,
@@ -26,14 +26,8 @@ export default function makeCachedAttachmentLoader(cache) {
       return attachment.attachment
     }
 
-    return vk_bot
-      .uploadPhoto(path, peer_id)
-      .then(([{owner_id, id}]) => {
-        logger.info(`${log_prefix}attachment ${inspect(path)} has been loaded`)
-
-        const attachment_id = makeAttachmentId(owner_id, id)
-        return cache.addAndSave(attachment_id, path, log_prefix)
-      })
+    return attachment_loader(vk_bot, path, peer_id, log_prefix)
+      .then(attachment_id => cache.addAndSave(attachment_id, path, log_prefix))
       .then(({attachment}) => {
         logger.info(
           `${log_prefix}attachment ${inspect(path)} `

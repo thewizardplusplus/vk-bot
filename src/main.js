@@ -5,7 +5,7 @@ import processOptions from './options'
 import processEnv from './env'
 import {initFileLogger, switchColorfulLogs} from './logger_ex'
 import {initCache} from './cache'
-import makeCachedAttachmentLoader from './loader'
+import {makeAttachmentLoader, makeCachedAttachmentLoader} from './loader'
 import {makeAttachmentsHandler} from './attachments'
 import makeCommandRunner from './command'
 import {
@@ -33,7 +33,7 @@ initFileLogger()
     const only_last = process.env.VK_BOT_ONLY_LAST === 'TRUE'
     const message_filter = only_last ? filterMessageByRegister : undefined
     let response_handler = makeAttachmentsHandler(
-      makeCachedAttachmentLoader(cache),
+      makeCachedAttachmentLoader(cache, makeAttachmentLoader()),
     )
     if (process.env.VK_BOT_PLEAD_JOIN === 'TRUE') {
       response_handler = makeJoinPleader(response_handler, message_filter)
