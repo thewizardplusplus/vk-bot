@@ -1,10 +1,13 @@
 # Change Log
 
-## [v1.5.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.5.0) (2018-04-02)
+## [v1.5.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.5.0) (2018-04-09)
 
 **Closed issues:**
 
-- Support a plea about a join to the group after each response [\#42](https://github.com/thewizardplusplus/vk-bot/issues/42)
+* Support a plea about a join to the group after each response [\#42](https://github.com/thewizardplusplus/vk-bot/issues/42)
+* Support a disabling of a caching of loaded attachments [\#44](https://github.com/thewizardplusplus/vk-bot/issues/44)
+* npm package:
+    * Describe a community mode for a photos uploading in the README.md file [\#43](https://github.com/thewizardplusplus/vk-bot/issues/43)
 
 ## [v1.4.0](https://github.com/thewizardplusplus/vk-bot/tree/v1.4.0) (2018-03-13)
 
