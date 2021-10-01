@@ -40,7 +40,7 @@ const EPILOG = `Environment variables:
   VK_BOT_API_DELAY      Base delay between calls to VK API in ms       [integer]
                         (default: 50)
 
-Copyright (C) 2017-2018 thewizardplusplus`
+Copyright (C) 2017-2018, 2021 thewizardplusplus`
 export default function processOptions() {
   return yargs
     .locale('en')

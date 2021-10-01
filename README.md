@@ -155,4 +155,4 @@ Error in a message processing
 
 The MIT License (MIT)
 
-Copyright &copy; 2017-2018 thewizardplusplus
+Copyright &copy; 2017-2018, 2021 thewizardplusplus
