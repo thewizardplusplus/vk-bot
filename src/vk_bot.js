@@ -77,9 +77,12 @@ function logError(error, log_prefix = '') {
   logger.error(`${log_prefix}error has occurred: ${inspect(error)}`)
 }
 
+const MAXIMAL_32_BITS_INTEGER = Math.pow(2, 31) - 1
 function sendResponse(vk_bot, peer_id, response, log_prefix = '') {
+  const random_id = Math.floor(Math.random() * MAXIMAL_32_BITS_INTEGER)
   return vk_bot
     .send(response.message, peer_id, {
+      random_id,
       attachment:
         typeof response.attachments !== 'undefined'
           ? response.attachments.join(',')
