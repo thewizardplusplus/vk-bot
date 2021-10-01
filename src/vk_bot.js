@@ -4,7 +4,7 @@ import { logger, inspect } from './logger'
 import colors from 'colors/safe'
 import fs from 'fs'
 
-const VK_API_VERSION = 5.63
+const VK_API_VERSION = 5.131
 const VK_API_LANGUAGE = 'ru'
 const DEFAULT_API_DELAY = 50
 const LONG_POLL_DELAY = 0
