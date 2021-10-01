@@ -19,13 +19,7 @@
       "$ref": "#/definitions/nonempty-string"
     }
   },
-  "required": [
-    "id",
-    "peer_id",
-    "timestamp",
-    "subject",
-    "text"
-  ],
+  "required": ["id", "peer_id", "timestamp", "subject", "text"],
   "additionalProperties": false,
   "definitions": {
     "nonempty-string": {

@@ -1,13 +1,11 @@
-import {name} from '../package.json'
+import { name } from '../package.json'
 import yargs from 'yargs'
 
-const USAGE =
-`Usage:
+const USAGE = `Usage:
   ${name} --version
   ${name} --help
   ${name} [--config PATH | -c PATH]`
-const EPILOG =
-`Environment variables:
+const EPILOG = `Environment variables:
   VK_BOT_TOKEN          VK API access token                            [string]
   VK_BOT_GROUP          ID or screen name of the group                 [string]
   VK_BOT_COMMAND        Messages process command                       [string]
@@ -56,6 +54,5 @@ export default function processOptions() {
       type: 'string',
       describe: 'Path to a .env config (default: ./.env)',
     })
-    .epilog(EPILOG)
-    .argv
+    .epilog(EPILOG).argv
 }

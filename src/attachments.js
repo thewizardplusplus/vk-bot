@@ -1,4 +1,4 @@
-import {logger, inspect} from './logger'
+import { logger, inspect } from './logger'
 import path from 'path'
 
 const ATTACHMENT_PATTERN = /\${file:\/\/([^{}]+)}/g
@@ -26,23 +26,25 @@ export function makeAttachmentsHandler(attachment_loader) {
   return (vk_bot, response, peer_id, log_prefix = '') => {
     logger.info(`${log_prefix}response has been received: ${inspect(response)}`)
 
-    const {cleaned_response, attachments} = extractAttachments(response)
-    return Promise
-      .all(attachments.map(attachment => attachment_loader(
-        vk_bot,
-        path.resolve(attachment),
-        peer_id,
-        log_prefix,
-      )))
-      .then(attachments => {
-        logger.info(
-          `${log_prefix}attachments have been loaded: ${inspect(attachments)}`,
-        )
+    const { cleaned_response, attachments } = extractAttachments(response)
+    return Promise.all(
+      attachments.map(attachment =>
+        attachment_loader(
+          vk_bot,
+          path.resolve(attachment),
+          peer_id,
+          log_prefix,
+        ),
+      ),
+    ).then(attachments => {
+      logger.info(
+        `${log_prefix}attachments have been loaded: ${inspect(attachments)}`,
+      )
 
-        return {
-          message: cleaned_response,
-          attachments,
-        }
-      })
+      return {
+        message: cleaned_response,
+        attachments,
+      }
+    })
   }
 }

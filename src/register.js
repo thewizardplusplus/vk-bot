@@ -1,4 +1,4 @@
-import {logger, inspect} from './logger'
+import { logger, inspect } from './logger'
 
 export class MessageRegister {
   messages = new Map()
@@ -8,8 +8,9 @@ export class MessageRegister {
   }
 
   isLastOrUnknown(message_id) {
-    return !this.messages.has(message_id)
-      || message_id === this._getLastMessageId()
+    return (
+      !this.messages.has(message_id) || message_id === this._getLastMessageId()
+    )
   }
 
   addAsUnprocessed(message_id) {
@@ -46,8 +47,9 @@ export class UserRegister {
 
   isLastOrUnknown(user_id, message_id) {
     const messages = this.users.get(user_id)
-    return typeof messages === 'undefined'
-      || messages.isLastOrUnknown(message_id)
+    return (
+      typeof messages === 'undefined' || messages.isLastOrUnknown(message_id)
+    )
   }
 
   add(user_id, message_id) {
@@ -87,8 +89,9 @@ export function makeRegisteringMessageHandler(message_handler) {
   return (vk_bot, message, log_prefix = '') => {
     register.add(message.peer_id, message.id)
 
-    return message_handler(vk_bot, message, log_prefix)
-      .then(() => register.remove(message.peer_id, message.id))
+    return message_handler(vk_bot, message, log_prefix).then(() =>
+      register.remove(message.peer_id, message.id),
+    )
   }
 }
 

@@ -1,14 +1,12 @@
-import {logger, inspect} from './logger'
-import {makeAttachmentId} from './attachments'
+import { logger, inspect } from './logger'
+import { makeAttachmentId } from './attachments'
 
 export function makeAttachmentLoader() {
   return (vk_bot, path, peer_id, log_prefix = '') => {
-    return vk_bot
-      .uploadPhoto(path, peer_id)
-      .then(([{owner_id, id}]) => {
-        logger.info(`${log_prefix}attachment ${inspect(path)} has been loaded`)
-        return makeAttachmentId(owner_id, id)
-      })
+    return vk_bot.uploadPhoto(path, peer_id).then(([{ owner_id, id }]) => {
+      logger.info(`${log_prefix}attachment ${inspect(path)} has been loaded`)
+      return makeAttachmentId(owner_id, id)
+    })
   }
 }
 
@@ -28,10 +26,10 @@ export function makeCachedAttachmentLoader(cache, attachment_loader) {
 
     return attachment_loader(vk_bot, path, peer_id, log_prefix)
       .then(attachment_id => cache.addAndSave(attachment_id, path, log_prefix))
-      .then(({attachment}) => {
+      .then(({ attachment }) => {
         logger.info(
-          `${log_prefix}attachment ${inspect(path)} `
-            + `has been added to the cache`,
+          `${log_prefix}attachment ${inspect(path)} ` +
+            `has been added to the cache`,
         )
 
         return attachment

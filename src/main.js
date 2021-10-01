@@ -3,10 +3,10 @@
 import 'babel-polyfill'
 import processOptions from './options'
 import processEnv from './env'
-import {initFileLogger, switchColorfulLogs} from './logger_ex'
-import {initCache} from './cache'
-import {makeAttachmentLoader, makeCachedAttachmentLoader} from './loader'
-import {makeAttachmentsHandler} from './attachments'
+import { initFileLogger, switchColorfulLogs } from './logger_ex'
+import { initCache } from './cache'
+import { makeAttachmentLoader, makeCachedAttachmentLoader } from './loader'
+import { makeAttachmentsHandler } from './attachments'
 import makeCommandRunner from './command'
 import {
   initVkBot,
