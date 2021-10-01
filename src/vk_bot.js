@@ -4,29 +4,31 @@ import { logger, inspect } from './logger'
 import colors from 'colors/safe'
 import fs from 'fs'
 
-const LONG_POLL_DELAY = 0
+const VK_API_VERSION = 5.63
+const VK_API_LANGUAGE = 'ru'
 const DEFAULT_API_DELAY = 50
+const LONG_POLL_DELAY = 0
 export function initVkBot(update_handler) {
   const vk_bot = new Bot({
     token: process.env.VK_BOT_TOKEN,
     api: {
-      v: 5.63,
-      lang: 'ru',
+      v: VK_API_VERSION,
+      lang: VK_API_LANGUAGE,
     },
   })
   const vk_api_client = new VkApi({
-    accessToken: vk_bot.options.token,
-    apiVersion: vk_bot.options.api.v.toString(),
+    accessToken: process.env.VK_BOT_TOKEN,
+    apiVersion: VK_API_VERSION.toString(),
     baseDelay: parseInt(process.env.VK_BOT_API_DELAY, 10) || DEFAULT_API_DELAY,
   })
   vk_bot.api = (method, parameters) =>
     vk_api_client.call(method, {
-      lang: vk_bot.options.api.lang,
+      lang: VK_API_LANGUAGE,
       ...parameters,
     })
   vk_bot.uploadPhoto = (path, peer_id) =>
     vk_api_client.upload('photo_pm', fs.createReadStream(path), {
-      lang: vk_bot.options.api.lang,
+      lang: VK_API_LANGUAGE,
       peer_id,
     })
   vk_bot.on('update', update => {
